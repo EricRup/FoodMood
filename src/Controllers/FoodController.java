@@ -1,12 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controllers;
 
 import Views.FoodMenu;
-import Models.FoodList;
+import Models.EntryList;
 
 /**
  *
@@ -15,7 +10,7 @@ import Models.FoodList;
 
 public class FoodController {
     FoodMenu foodView;
-    FoodList foodList;
+    EntryList foodList;
     
     /**
      * Default Constructor for FoodController

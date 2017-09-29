@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Views;
 
 import Models.Mood;
@@ -17,10 +12,6 @@ public class MoodMenu {
     
     protected Mood mood;
     protected ArrayList<Mood> moodList;
-    
-    public MoodMenu() {
-        
-    }
     
     public void addNewMood(Mood newMood) {
         this.moodList.add(newMood);
