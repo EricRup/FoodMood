@@ -6,6 +6,20 @@ package Models;
  */
 
 public class Food{
+
+    /**
+     * @return the carbs
+     */
+    public int getCarbs() {
+        return carbs;
+    }
+
+    /**
+     * @param carbs the carbs to set
+     */
+    public void setCarbs(int carbs) {
+        this.carbs = carbs;
+    }
     
     /**
      * Constructor that initializes attributes
@@ -111,36 +125,6 @@ public class Food{
     }
 
     /**
-     * @return the simpleCarb, an integer representing simple carbohydrates in Grams
-     */
-    public int getSimpleCarb() {
-        return simpleCarb;
-    }
-
-    /**
-     * @param simpleCarb the simpleCarb to set, an integer representing 
-     * simple carbohydrates in Grams
-     */
-    public void setSimpleCarb(int simpleCarb) {
-        this.simpleCarb = simpleCarb;
-    }
-
-    /**
-     * @return the complexCarb, an integer representing complex carbohydrates in Grams
-     */
-    public int getComplexCarb() {
-        return complexCarb;
-    }
-
-    /**
-     * @param complexCarb the complexCarb to set, an integer representing 
-     * complex carbohydrates in Grams
-     */
-    public void setComplexCarb(int complexCarb) {
-        this.complexCarb = complexCarb;
-    }
-
-    /**
      * @return the calories, an integer representing calories in Grams
      */
     public int getCalories() {
@@ -170,8 +154,7 @@ public class Food{
     private int sugars;
     private int monoFat;
     private int polyFat;
-    private int simpleCarb;
-    private int complexCarb;
+    private int carbs;
     private int calories;
     private int transFat;
     private boolean drink;
