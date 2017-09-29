@@ -5,7 +5,7 @@ package Models;
  * @author David Huynh
  */
 
-public class Food{
+public class Food implements Comparable<Food>{
 
     /**
      * @return the carbs
@@ -151,6 +151,17 @@ public class Food{
     public void setTransFat(int transFat) {
         this.transFat = transFat;
     }
+    
+    /**
+     * 
+     * @param b Food object to compare
+     * @return result integer representation of boolean to be used by TreeSet
+     */
+    @Override
+    public int compareTo(Food b) {
+        return this.getName().compareTo(b.getName()); 
+    }
+
     private int sugars;
     private int monoFat;
     private int polyFat;
