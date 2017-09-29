@@ -2,7 +2,7 @@ package Controllers;
 
 /**
  *
- * @author David Huynh
+ * @author Soren
  */
 public class AnalysisController {
     
