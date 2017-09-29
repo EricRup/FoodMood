@@ -5,12 +5,12 @@ import Models.EntryList;
 
 /**
  *
- * @author David Huynh
+ * @author David and John
  */
 
 public class MoodController {
    MoodMenu moodView;
-   EntryList moodList;
+   EntryList entryList;
    
    /**
    * Default constructor for the MoodController
