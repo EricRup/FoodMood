@@ -5,12 +5,12 @@ import Models.EntryList;
 
 /**
  *
- * @author David Huynh
+ * @author Eric
  */
 
 public class FoodController {
     FoodMenu foodView;
-    EntryList foodList;
+    EntryList entryList;
     
     /**
      * Default Constructor for FoodController
