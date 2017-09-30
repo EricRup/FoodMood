@@ -163,7 +163,6 @@ public class Food{
     }
     
     /**
-     * 
      * @return name for toString to enable TreeSet
      */
     @Override
