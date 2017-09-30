@@ -13,7 +13,6 @@ public abstract class Entry {
     /**
      * Constructor that initializes attributes
      * @param date is the date and time associated with this entry
-     * @param name is the identifying name of this entry
      */
     public Entry(Calendar date){
         this.date = date;   

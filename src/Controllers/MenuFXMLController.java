@@ -1,27 +1,24 @@
 package Controllers;
 
 import Models.EntryList;
-import Views.MenuView;
+import java.net.URL;
+import java.util.ResourceBundle;
+import javafx.fxml.Initializable;
 
 /**
  *
  * @author Eric
  */
-public class MenuController {
-    private EntryList entryList;
-    private DiaryController dControl;
-    private AnalysisController aControl;
-    private MenuView menuView;
+public class MenuFXMLController implements Initializable{
+    private static EntryList entryList;
     private String curView;
     /**
      * Initialize MenuController
      * A centralized controller responsible for general delegation between modules
      */
-    public MenuController(){
+    public MenuFXMLController(){
         curView = "Menu";
         entryList = new EntryList();
-        dControl = new DiaryController(entryList);
-        aControl = new AnalysisController(entryList);
         viewMenu();        
     }
     /**
@@ -70,5 +67,10 @@ public class MenuController {
      */
     public String getCurView() {
         return curView;
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        entryList = FoodMood.FoodMood.getEntryList();
     }
 }

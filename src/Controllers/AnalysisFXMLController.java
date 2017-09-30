@@ -27,28 +27,41 @@ public class AnalysisFXMLController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        entryList = FoodMood.FoodMood.mControl.getEntryList();
+        entryList = FoodMood.FoodMood.getEntryList();
     }    
   
     /**
      * analyzes the effects of quantity and quality of food eaten
+     * @return if the analysis was successful
      */
-    public void nutritionAnalysis(){
-        
+    public boolean nutritionAnalysis(){
+        if (entryList.isEmpty()){
+            return false;
+        }
         System.out.println("Nutrion Analyzed");
+        return true;
     }
     /**
      * analyzes the effects of eating a different number of times a day
+     * @return if the analysis was successful
      */
-    public void frequencyAnalysis(){
-      
+    public boolean frequencyAnalysis(){
+        if (entryList.isEmpty()){
+            return false;
+        }
         System.out.println("Eating Frequency Analyzed");
+        return true;
     }
     /**
      * analyzes the effects of eating at different times of day
+     * @return if the analysis was successful
      */
-    public void timeAnalysis(){
+    public boolean timeAnalysis(){
+        if (entryList.isEmpty()){
+            return false;
+        }
         System.out.println("Time of Eating Analyzed");
+        return true;
     }
     
 }
