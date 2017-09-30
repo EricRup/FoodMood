@@ -5,7 +5,17 @@ package Models;
  * @author David Huynh
  */
 
-public class Food implements Comparable<Food>{
+public class Food{
+    
+    private int sugars;
+    private int monoFat;
+    private int polyFat;
+    private int carbs;
+    private int calories;
+    private int transFat;
+    private boolean drink;
+    private int satFat;
+    private String name;
 
     /**
      * @return the carbs
@@ -153,22 +163,11 @@ public class Food implements Comparable<Food>{
     }
     
     /**
-     * 
-     * @param b Food object to compare
-     * @return result integer representation of boolean to be used by TreeSet
+     * @return name for toString to enable TreeSet
      */
     @Override
-    public int compareTo(Food b) {
-        return this.getName().compareTo(b.getName()); 
+    public String toString() {
+        return this.getName(); 
     }
 
-    private int sugars;
-    private int monoFat;
-    private int polyFat;
-    private int carbs;
-    private int calories;
-    private int transFat;
-    private boolean drink;
-    private int satFat;
-    private String name;
 }
