@@ -1,11 +1,13 @@
 package Models;
 
+import java.util.Calendar;
+
 /**
  *
  * @author Eric
  */
 public abstract class Entry {
-    private long date;
+    private Calendar date;
     private String name;
     
     /**
@@ -13,21 +15,14 @@ public abstract class Entry {
      * @param date is the date and time associated with this entry
      * @param name is the identifying name of this entry
      */
-    public Entry(long date, String name){
-        this.date = date;
-        this.name = name;    
+    public Entry(Calendar date){
+        this.date = date;   
     }
     
-    public void setName(String name){
-        this.name = name;
-    }
-    public String getName(){
-        return name;
-    }
-    public void setDate(long date){
+    public void setDate(Calendar date){
         this.date = date;
     }
-    public long getDate(){
+    public Calendar getDate(){
         return date;
     }
 }
