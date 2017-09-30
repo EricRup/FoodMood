@@ -7,6 +7,7 @@ package Controllers;
 
 import Models.EntryList;
 import Models.Food;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.TreeSet;
@@ -18,6 +19,7 @@ import javafx.fxml.Initializable;
  * @author Walrus
  */
 public class AnalysisFXMLController implements Initializable {
+
     private EntryList entryList;
     
     /**
@@ -27,7 +29,7 @@ public class AnalysisFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         entryList = FoodMood.FoodMood.mControl.getEntryList();
     }    
-    
+  
     /**
      * analyzes the effects of quantity and quality of food eaten
      */
@@ -39,6 +41,7 @@ public class AnalysisFXMLController implements Initializable {
      * analyzes the effects of eating a different number of times a day
      */
     public void frequencyAnalysis(){
+      
         System.out.println("Eating Frequency Analyzed");
     }
     /**

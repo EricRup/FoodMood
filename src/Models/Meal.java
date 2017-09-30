@@ -8,7 +8,6 @@ package Models;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
-
 /**
  *
  * @author Walrus
@@ -23,7 +22,6 @@ public class Meal extends Entry{
     
     public void addFood(Food toAdd){
         foodConsumed.add(toAdd);
-        
         foodConsumed.forEach((f) -> {
             System.out.println(f.getName());
         });
