@@ -5,6 +5,7 @@
  */
 package Controllers;
 
+import Models.EntryList;
 import Models.Food;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -17,13 +18,16 @@ import javafx.fxml.Initializable;
  * @author Walrus
  */
 public class AnalysisFXMLController implements Initializable {
-
+    private EntryList entryList;
+    
     /**
-     * Constructor instantiates a collection of Entries
+     * Initializes the controller class.
      */
-    public AnalysisFXMLController(){
-        
-    }
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        entryList = FoodMood.FoodMood.mControl.getEntryList();
+    }    
+    
     /**
      * analyzes the effects of quantity and quality of food eaten
      */
@@ -35,7 +39,6 @@ public class AnalysisFXMLController implements Initializable {
      * analyzes the effects of eating a different number of times a day
      */
     public void frequencyAnalysis(){
-       
         System.out.println("Eating Frequency Analyzed");
     }
     /**
@@ -44,12 +47,5 @@ public class AnalysisFXMLController implements Initializable {
     public void timeAnalysis(){
         System.out.println("Time of Eating Analyzed");
     }
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
     
 }
