@@ -5,6 +5,7 @@
  */
 package Models;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 /**
@@ -13,8 +14,18 @@ import java.util.Calendar;
  */
 public class Meal extends Entry{
     
+    ArrayList<Food> foodConsumed = new ArrayList<>();
+    
     public Meal(Calendar date) {
         super(date);
+    }
+    
+    public void addFood(Food toAdd){
+        foodConsumed.add(toAdd);
+        
+        for (Food f : foodConsumed){
+            System.out.println(f.getName());
+        }
     }
     
 }
