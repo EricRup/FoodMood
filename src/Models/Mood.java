@@ -8,7 +8,6 @@ import java.util.Calendar;
  */
 
 public class Mood extends Entry{
-    
 
     /**
      * Constructor that initializes attributes
@@ -16,8 +15,6 @@ public class Mood extends Entry{
      * @param name is the name of the food item as a String
      */
     public Mood(Calendar date, String name) {
-        super(date);
+        super(date, name);
     }
-    
-
 }

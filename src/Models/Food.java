@@ -16,21 +16,6 @@ public class Food{
     private boolean drink;
     private int satFat;
     private String name;
-
-    /**
-     * @return the carbs
-     */
-    public int getCarbs() {
-        return carbs;
-    }
-
-    /**
-     * @param carbs the carbs to set
-     */
-    public void setCarbs(int carbs) {
-        this.carbs = carbs;
-    }
-    
     /**
      * Constructor that initializes attributes
      * @param date is the date and time of the entry
@@ -161,6 +146,21 @@ public class Food{
     public void setTransFat(int transFat) {
         this.transFat = transFat;
     }
+
+    /**
+     * @return the carbs
+     */
+    public int getCarbs() {
+        return carbs;
+    }
+
+    /**
+     * @param carbs the carbs to set
+     */
+    public void setCarbs(int carbs) {
+        this.carbs = carbs;
+    }
+    
     
     /**
      * @return name for toString to enable TreeSet
