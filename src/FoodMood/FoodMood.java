@@ -1,5 +1,6 @@
 package FoodMood;
 
+import Controllers.MenuFXMLController;
 import Models.EntryList;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -13,16 +14,13 @@ import javafx.stage.Stage;
  */
 public class FoodMood extends Application{
     public static EntryList entryList;
+    public static MenuFXMLController mControl;
     public static Stage primaryStage;
-    /**
-     * @param args[] [0] whether to initialize visuals
-     */
+    
+    
     public static void main(String[] args) {
         entryList = new EntryList();
-        
-        if (!args[0].equals("false")){
-            launch();
-        }
+        launch();
     }
 
     public static EntryList getEntryList() {
@@ -31,12 +29,13 @@ public class FoodMood extends Application{
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/Views/AnalysisFXML.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/MenuFXML.fxml"));
+        Parent root = loader.load();
+        mControl = (MenuFXMLController) loader.getController();
         FoodMood.primaryStage = primaryStage;
-        primaryStage.setTitle("FoodMood - Menu");
-        Scene analysis = new Scene(root);
-        primaryStage.setScene(analysis);
-        primaryStage.show();
+        FoodMood.primaryStage.setTitle("FoodMood - Menu");
+        FoodMood.primaryStage.setScene(new Scene(root));
+        FoodMood.primaryStage.show();
     }
     
 }

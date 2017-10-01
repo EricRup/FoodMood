@@ -8,6 +8,8 @@ package Models;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
+import java.util.Iterator;
+import java.util.Optional;
 /**
  *
  * @author Walrus
@@ -16,19 +18,43 @@ public class Meal extends Entry{
     
     ArrayList<Food> foodConsumed = new ArrayList<>();
     
-    public Meal(Calendar date) {
-        super(date);
+    public Meal(Calendar date, String name) {
+        super(date, name);
     }
-    
-    public void addFood(Food toAdd){
+    public Meal addFood(String iName){
+        foodConsumed.add(new Food(iName));
+        return this;
+    }
+    public Meal addFood(Food toAdd){
         foodConsumed.add(toAdd);
-        foodConsumed.forEach((f) -> {
-            System.out.println(f.getName());
-        });
+        return this;
     }
     
     public void addFoods(Collection<Food> toAdd){
         foodConsumed.addAll(toAdd);
+    }
+    
+    public Meal removeFood(String iName){
+        Optional<Food> f = foodConsumed.stream().filter(obj -> obj.getName().equals(iName)).findFirst();
+        if (f.isPresent())
+            foodConsumed.remove(f.get());
+        return this;
+    }
+    public Meal removeFood(Food toRemove){
+        foodConsumed.remove(toRemove);
+        return this;
+    }
+    public ArrayList<Food> getFoods(){
+        return foodConsumed;
+    }
+    
+    public String printFoods(){
+        String toReturn = "Foods in Meal\n";
+        Iterator<Food> i = foodConsumed.iterator();
+        while(i.hasNext()){
+            toReturn += i.next().getName() + "\n";
+        }
+        return toReturn;
     }
     
 }

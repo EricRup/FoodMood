@@ -15,30 +15,18 @@ public class EntryList extends TreeMap<Calendar, Entry> {
      * Should never collide in real world conditions
      * 
      * @param toAdd the entry to add to the list
-     * @return the Entry it replaced. Should always be null.
+     * @return the Calendar identifier of the new entry
      **/
-    public Entry add(Entry toAdd){
+    public Calendar add(Entry toAdd){
         Calendar manip = toAdd.getDate();
-        while(this.get(manip) != null){
+        
+        while(get(manip) != null){
             manip.add(Calendar.MILLISECOND, 1);
         }
         toAdd.setDate(manip);
-        return this.put(manip, toAdd);
+        this.put(manip, toAdd);
+        return toAdd.getDate();
         
     }
     
-    /**
-     * Removes the entry requested for removal
-     * @param toRemove the entry to remove
-     * @return if the entry existed in the list.
-     */
-    public boolean remove(Entry toRemove){
-        if (toRemove != null && this.get(toRemove.getDate()) != null){
-            this.remove(toRemove.getDate());
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
 }

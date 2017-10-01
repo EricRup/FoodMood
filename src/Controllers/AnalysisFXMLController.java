@@ -5,12 +5,9 @@
  */
 package Controllers;
 
-import Models.EntryList;
-import Models.Food;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.TreeSet;
 import javafx.fxml.Initializable;
 
 /**
@@ -18,50 +15,44 @@ import javafx.fxml.Initializable;
  *
  * @author Walrus
  */
-public class AnalysisFXMLController implements Initializable {
+public class AnalysisFXMLController extends Controller implements Initializable {
 
-    private EntryList entryList;
-    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        entryList = FoodMood.FoodMood.getEntryList();
     }    
   
     /**
      * analyzes the effects of quantity and quality of food eaten
      * @return if the analysis was successful
      */
-    public boolean nutritionAnalysis(){
+    public String nutritionAnalysis(){
         if (entryList.isEmpty()){
-            return false;
+            return null;
         }
-        System.out.println("Nutrion Analyzed");
-        return true;
+        return "Nutrion Analyzed";
     }
     /**
      * analyzes the effects of eating a different number of times a day
      * @return if the analysis was successful
      */
-    public boolean frequencyAnalysis(){
+    public String frequencyAnalysis(){
         if (entryList.isEmpty()){
-            return false;
+            return null;
         }
-        System.out.println("Eating Frequency Analyzed");
-        return true;
+        return "Eating Frequency Analyzed";
     }
     /**
      * analyzes the effects of eating at different times of day
      * @return if the analysis was successful
      */
-    public boolean timeAnalysis(){
+    public String timeAnalysis(){
         if (entryList.isEmpty()){
-            return false;
+            return null;
         }
-        System.out.println("Time of Eating Analyzed");
-        return true;
+        return "Time of Eating Analyzed";
     }
     
 }
