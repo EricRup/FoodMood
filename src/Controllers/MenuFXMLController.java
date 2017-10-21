@@ -9,10 +9,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.text.Text;
 
 /**
  *
- * @author Eric
+ * @author Eric, David
  */
 public class MenuFXMLController extends Controller implements Initializable{
     private String curView;
@@ -25,7 +28,26 @@ public class MenuFXMLController extends Controller implements Initializable{
     public MenuFXMLController(){
         curView = "Menu";        
     }
+    
+    /*
+     * FXML Scene Login
+     */
+    @FXML private Text actiontarget;
+    
+    @FXML protected void handleSubmitButtonAction(ActionEvent event) {
+        actiontarget.setText("Signing In");
+    }
+    public void start(Stage stage) throws Exception {
+       Parent root = FXMLLoader.load(getClass().getResource("MenuFXML.fxml"));
+    
+        Scene scene = new Scene(root, 300, 275);
+    
+        stage.setTitle("FXML Welcome");
+        stage.setScene(scene);
+        stage.show();
+    }
 
+    
     /**
      * @return the curView
      */
@@ -62,4 +84,5 @@ public class MenuFXMLController extends Controller implements Initializable{
         }
         return null;
     }
+
 }
