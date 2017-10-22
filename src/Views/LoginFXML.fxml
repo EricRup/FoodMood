@@ -10,13 +10,12 @@
 
 <AnchorPane id="AnchorPane" prefHeight="300.0" prefWidth="500.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="Controllers.LoginFXMLController">
     <children>
-        <Text layoutX="130.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to FoodMood" wrappingWidth="311.12109375">
+        <Text layoutX="180.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FoodMood" wrappingWidth="311.12109375">
             <font>
-                <Font size="23.0" />
+                <Font size="25.0" />
             </font>
         </Text>
-        
-        <!-- Input prompt Implementation -->
+      
         <TextField fx:id="Username" layoutX="150.0" layoutY="130.0" prefHeight="23.0" prefWidth="200.0" promptText="Enter User Name" />
         <PasswordField fx:id="Password" layoutX="150.0" layoutY="160.0" prefHeight="23.0" prefWidth="200.0" promptText="Enter Password" />
         <Button fx:id="LoginButton" layoutX="150.0" layoutY="200.0" prefHeight="23.0" prefWidth="200.0" text="Login" />

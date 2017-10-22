@@ -52,12 +52,12 @@ public class LoginFXMLController extends Controller implements Initializable {
         }  
     }
     
-    private void showMainMenu() {
+    private void showMenu() {
         // Close Login Stage
         Stage temp = (Stage) Username.getScene().getWindow();
         temp.close();
         try {
-            // Loads FXML resources and create,display a FXML scene 
+            // Loads Menu Stage
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/Menu.fxml"));
             Parent root = loader.load();
             Stage base = new Stage();
