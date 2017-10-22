@@ -1,8 +1,6 @@
 package Controllers;
 
-import FoodMood.FoodMood;
 import Models.Entry;
-import Models.EntryList;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.YearMonth;
@@ -16,10 +14,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import Views.AnchorPaneNode;
-import java.util.Date;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.TextFlow;
 
