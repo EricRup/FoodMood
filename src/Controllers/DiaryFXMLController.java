@@ -12,6 +12,7 @@ import java.util.GregorianCalendar;
 import java.util.ResourceBundle;
 import java.util.List;
 import java.util.stream.Collectors;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -24,6 +25,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.text.TextFlow;
 import javafx.util.Callback;
+
 
 /**
  *
@@ -54,7 +56,7 @@ public class DiaryFXMLController extends Controller {
 
     @FXML
     protected void addOnClick(ActionEvent event) {
-
+        obsEntryList.add(textfield.getText());
     }
 
     @FXML
@@ -63,7 +65,8 @@ public class DiaryFXMLController extends Controller {
 
     @FXML
     protected void deleteOnClick(ActionEvent event) {
-
+        int selectedItem = diaryListView.getSelectionModel().getSelectedIndex();
+        obsEntryList.remove(selectedItem);
     }
 
     /**
@@ -175,5 +178,9 @@ public class DiaryFXMLController extends Controller {
         testData();
         dayCellSetup();
         setDay(Calendar.getInstance());
+
+        
+        diaryListView.setItems(obsEntryList);
+        
     }
 }
