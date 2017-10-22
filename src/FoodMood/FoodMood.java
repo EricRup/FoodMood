@@ -29,11 +29,11 @@ public class FoodMood extends Application{
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/MenuFXML.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/LoginFXML.fxml"));
         Parent root = loader.load();
         mControl = (MenuFXMLController) loader.getController();
         FoodMood.primaryStage = primaryStage;
-        FoodMood.primaryStage.setTitle("FoodMood - Menu");
+        FoodMood.primaryStage.setTitle("FoodMood - Login");
         FoodMood.primaryStage.setScene(new Scene(root));
         FoodMood.primaryStage.show();
     }

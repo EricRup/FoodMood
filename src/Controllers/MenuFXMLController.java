@@ -18,7 +18,6 @@ import javafx.scene.text.Text;
  * @author Eric, David
  */
 public class MenuFXMLController extends Controller implements Initializable{
-    private String curView;
     private DiaryFXMLController dControl;
     private AnalysisFXMLController aControl;
     /**
@@ -28,25 +27,6 @@ public class MenuFXMLController extends Controller implements Initializable{
     public MenuFXMLController(){
         curView = "Menu";        
     }
-    
-    /*
-     * FXML Scene Login
-     */
-    @FXML private Text actiontarget;
-    
-    @FXML protected void handleSubmitButtonAction(ActionEvent event) {
-        actiontarget.setText("Signing In");
-    }
-    public void start(Stage stage) throws Exception {
-       Parent root = FXMLLoader.load(getClass().getResource("MenuFXML.fxml"));
-    
-        Scene scene = new Scene(root, 300, 275);
-    
-        stage.setTitle("FXML Welcome");
-        stage.setScene(scene);
-        stage.show();
-    }
-
     
     /**
      * @return the curView
@@ -61,28 +41,9 @@ public class MenuFXMLController extends Controller implements Initializable{
             entryList = new EntryList();
         }
     }
-
-    /**
-     * Change the view to the designated stage
-     * @param stage the stage to change the view to. Proper noun format i.e. Diary or Analysis
-     * @return the controller for the requested stage (as a generic Controller)
-     */
-    public Controller view(String targetStage, Stage stage){
-        
-        if (!curView.equals(targetStage)){
-            try{
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/"+targetStage+"FXML.fxml"));
-                Parent root = loader.load();
-                stage.setTitle("FoodMood - "+targetStage);
-                stage.setScene(new Scene(root));
-                curView = targetStage;
-                return loader.getController();
-            }   
-            catch(IOException e){
-                System.err.println("Error: Class name ["+targetStage+"] doesn't exist in MenuLoader");
-            }
-        }
-        return null;
+    @FXML private Text actiontarget;
+    
+    @FXML protected void handleSubmitButtonAction(ActionEvent event) {
+        view("Menu");
     }
-
 }
