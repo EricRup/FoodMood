@@ -56,5 +56,9 @@ public class Meal extends Entry{
         }
         return toReturn;
     }
+    @Override
+    public String toString(){
+        return getName();
+    }
     
 }

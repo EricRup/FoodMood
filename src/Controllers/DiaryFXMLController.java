@@ -1,28 +1,29 @@
 package Controllers;
 
+import static Controllers.Controller.entryList;
 import Models.Entry;
+import Models.Mood;
 import java.net.URL;
 import java.time.LocalDate;
-import java.time.YearMonth;
+import java.time.LocalDateTime;
+import java.time.MonthDay;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.ResourceBundle;
-import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
-import Views.AnchorPaneNode;
 import java.util.List;
+import java.util.stream.Collectors;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.control.Tooltip;
 import javafx.scene.text.TextFlow;
+import javafx.util.Callback;
 
 /**
  *
@@ -31,8 +32,7 @@ import javafx.scene.text.TextFlow;
 
 public class DiaryFXMLController extends Controller{
 
-    private Text calendarTitle;
-    private Calendar firstDay, lastDay;
+    private Calendar currentDay, nextDay;
     private ObservableList obsEntryList;
     @FXML DatePicker datePicker;
     @FXML ListView diaryListView;
@@ -41,20 +41,9 @@ public class DiaryFXMLController extends Controller{
      * Instantiates to current month
      */
     public DiaryFXMLController() {
-        firstDay = Calendar.getInstance();
-        firstDay.set(Calendar.DAY_OF_MONTH, 1);
-        lastDay = Calendar.getInstance();
-        List<Entry> subList = new ArrayList<>(entryList.subMap(firstDay, lastDay).values());
-        obsEntryList = FXCollections.observableList(subList);
-        obsEntryList.addListener((ListChangeListener.Change change) -> {
-            System.out.println("Changed");
-        });
         
-        diaryListView.setItems(obsEntryList);
     }
     
-    public DiaryFXMLController(Calendar day){
-    }
     
     /**
      * Add entry to static entry list
@@ -89,6 +78,69 @@ public class DiaryFXMLController extends Controller{
         return entriesText;
     }
     
+    public void setDay(Calendar date){
+        currentDay = date;
+        currentDay = setZeroes(currentDay);
+        nextDay = (Calendar) currentDay.clone();
+        nextDay.add(Calendar.DATE, 1);
+        nextDay = setZeroes(nextDay);
+        List<Entry> subList = entryList.values()
+                .stream()
+                .filter(p -> p.getDate().after(currentDay))
+                .filter(p -> p.getDate().before(nextDay))
+                .collect(Collectors.toList());
+        obsEntryList = FXCollections.observableList(subList);
+        diaryListView.setItems(obsEntryList);
+    }
+    private void testData(){
+        
+        addEntry(new Mood(Calendar.getInstance(), "Sad"));
+        Calendar cal2 = Calendar.getInstance();
+        cal2.add(Calendar.DATE, -3);
+        addEntry(new Mood(cal2, "Happy"));
+        Calendar cal3 = (Calendar) cal2.clone();
+        cal3.add(Calendar.HOUR, 1);
+        addEntry(new Mood(cal3, "Sad"));
+        
+    }
+    private Calendar setZeroes(Calendar day){
+        day.set(Calendar.HOUR_OF_DAY, 0);
+        day.set(Calendar.MINUTE, 0);
+        day.set(Calendar.SECOND, 0);
+        day.set(Calendar.MILLISECOND, 0);
+        return day;
+    }
+    @FXML
+    protected void updateDate(ActionEvent event){
+        Calendar date = GregorianCalendar.from(datePicker.getValue().atStartOfDay().atZone(ZoneId.systemDefault()));
+        setDay(date);
+    }
+    private void dayCellSetup(){
+        final Callback<DatePicker, DateCell> dayCellFactory = new Callback<DatePicker, DateCell>() {
+            @Override
+            public DateCell call(final DatePicker datePicker) {
+                return new DateCell() {
+                    @Override
+                    public void updateItem(LocalDate item, boolean empty) {
+                        super.updateItem(item, empty);
+                        Calendar cal = GregorianCalendar.from(item.atStartOfDay().atZone(ZoneId.systemDefault()));
+                        Calendar cal2 = (Calendar) cal.clone();
+                        cal2.add(Calendar.DATE,1);        
+                        List<Entry> subList = entryList.values()
+                                .stream()
+                                .filter(p -> p.getDate().after(cal))                
+                                .filter(p -> p.getDate().before(cal2))
+                                .collect(Collectors.toList());
+                        if (subList.size() > 0 && currentDay.get(Calendar.DATE) != cal.get(Calendar.DATE)) {
+                            this.setTooltip(new Tooltip(subList.size() + " entries"));
+                            setStyle("-fx-background-color: #00ffff;");
+                        }
+                    }
+                };
+            }
+        };
+        datePicker.setDayCellFactory(dayCellFactory);
+    }
     /**
      * Initializes JavaFX controller
      * @param url 
@@ -96,7 +148,8 @@ public class DiaryFXMLController extends Controller{
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-        
+        testData();
+        dayCellSetup();
+        setDay(Calendar.getInstance());
     }
 }
