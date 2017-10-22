@@ -16,6 +16,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
@@ -32,6 +33,10 @@ public class DiaryFXMLController extends Controller{
 
     private Calendar currentDay, nextDay;
     private ObservableList obsEntryList;
+    
+    @FXML //  fx:id="MoodSelect"
+    private ComboBox<String> moodSelect;
+
     @FXML DatePicker datePicker;
     @FXML ListView diaryListView;
     /**
