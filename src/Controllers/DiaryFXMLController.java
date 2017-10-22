@@ -177,4 +177,6 @@ public class DiaryFXMLController extends Controller{
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     }
+    
+    
 }
