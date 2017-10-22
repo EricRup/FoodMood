@@ -115,28 +115,25 @@ public class DiaryFXMLController extends Controller{
         Calendar date = GregorianCalendar.from(datePicker.getValue().atStartOfDay().atZone(ZoneId.systemDefault()));
         setDay(date);
     }
+    
+    //Implement dayCellFactory to read number of entries on each date and 
     private void dayCellSetup(){
-        final Callback<DatePicker, DateCell> dayCellFactory = new Callback<DatePicker, DateCell>() {
+        final Callback<DatePicker, DateCell> dayCellFactory = (final DatePicker datePicker1) -> new DateCell() {
             @Override
-            public DateCell call(final DatePicker datePicker) {
-                return new DateCell() {
-                    @Override
-                    public void updateItem(LocalDate item, boolean empty) {
-                        super.updateItem(item, empty);
-                        Calendar cal = GregorianCalendar.from(item.atStartOfDay().atZone(ZoneId.systemDefault()));
-                        Calendar cal2 = (Calendar) cal.clone();
-                        cal2.add(Calendar.DATE,1);        
-                        List<Entry> subList = entryList.values()
-                                .stream()
-                                .filter(p -> p.getDate().after(cal))                
-                                .filter(p -> p.getDate().before(cal2))
-                                .collect(Collectors.toList());
-                        if (subList.size() > 0 && currentDay.get(Calendar.DATE) != cal.get(Calendar.DATE)) {
-                            this.setTooltip(new Tooltip(subList.size() + " entries"));
-                            setStyle("-fx-background-color: #00ffff;");
-                        }
-                    }
-                };
+            public void updateItem(LocalDate item, boolean empty) {
+                super.updateItem(item, empty);
+                Calendar cal = GregorianCalendar.from(item.atStartOfDay().atZone(ZoneId.systemDefault()));
+                Calendar cal2 = (Calendar) cal.clone();
+                cal2.add(Calendar.DATE,1);
+                List<Entry> subList = entryList.values()
+                        .stream()
+                        .filter(p -> p.getDate().after(cal))
+                        .filter(p -> p.getDate().before(cal2))
+                        .collect(Collectors.toList());
+                if (subList.size() > 0) {
+                    this.setTooltip(new Tooltip(subList.size() + " entries"));
+                    setStyle("-fx-background-color: #00ffff;");
+                }
             }
         };
         datePicker.setDayCellFactory(dayCellFactory);

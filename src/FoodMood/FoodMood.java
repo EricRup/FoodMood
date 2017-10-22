@@ -29,7 +29,7 @@ public class FoodMood extends Application{
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/LoginFXML.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/DiaryFXML.fxml"));
         Parent root = loader.load();
         mControl = (MenuFXMLController) loader.getController();
         FoodMood.primaryStage = primaryStage;
