@@ -20,9 +20,10 @@
         <Button fx:id="editButton" disable="true" layoutX="460.0" layoutY="14.0" mnemonicParsing="false" onAction="#editOnClick" text="Edit" />
         <Button fx:id="deleteButton" disable="true" layoutX="502.0" layoutY="14.0" mnemonicParsing="false" onAction="#deleteOnClick" text="Delete" />
       
-        <TextField fx:id="FoodEntry" layoutX="400.0" layoutY="53.0" prefHeight="23.0" prefWidth="170.0" promptText="Enter Food" />
+        <TextField fx:id="foodEntry" layoutX="400.0" layoutY="53.0" prefHeight="23.0" prefWidth="170.0" onAction="#addOnClick" promptText="Enter Food" />
         
-        <ComboBox fx:id="MoodSelect" layoutX="400.0" layoutY="83.0" prefHeight="23.0" prefWidth="170.0" promptText="Choose Your Mood" >
+        <ComboBox fx:id="moodSelect" layoutX="400.0" layoutY="83.0" prefHeight="23.0" prefWidth="170.0" promptText="Choose Your Mood" >
+
         </ComboBox>
 
     </children>

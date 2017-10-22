@@ -20,6 +20,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.text.TextFlow;
 import javafx.util.Callback;
@@ -28,68 +29,80 @@ import javafx.util.Callback;
  *
  * @author Eric
  */
-
-public class DiaryFXMLController extends Controller{
+public class DiaryFXMLController extends Controller {
 
     private Calendar currentDay, nextDay;
     private ObservableList obsEntryList;
-    
+
     @FXML //  fx:id="MoodSelect"
     private ComboBox<String> moodSelect;
 
-    @FXML DatePicker datePicker;
-    @FXML ListView diaryListView;
+    @FXML
+    private TextField textfield;
+
+    @FXML
+    DatePicker datePicker;
+    @FXML
+    ListView diaryListView;
+
     /**
-     * Create a calendar view
-     * Instantiates to current month
+     * Create a calendar view Instantiates to current month
      */
     public DiaryFXMLController() {
-        
+
     }
-    
-    @FXML protected void addOnClick(ActionEvent event){
+
+    @FXML
+    protected void addOnClick(ActionEvent event) {
         
+        addEntry(new Mood(Calendar.getInstance(), textfield.getText()));
     }
-    @FXML protected void editOnClick(ActionEvent event){
-        
+
+    @FXML
+    protected void editOnClick(ActionEvent event) {
+
     }
-    @FXML protected void deleteOnClick(ActionEvent event){
-        
+
+    @FXML
+    protected void deleteOnClick(ActionEvent event) {
+
     }
+
     /**
      * Add entry to static entry list
+     *
      * @param entry the entry to add
      * @return the Date identifier. Null if failed to add
      */
-    public Calendar addEntry(Entry entry){
+    public Calendar addEntry(Entry entry) {
         return entryList.add(entry);
     }
-    
+
     /**
      * Remove an entry from the entry list
+     *
      * @param entry the entry to remove
      * @return if the removal was successful
      */
-    public boolean removeEntry(Entry entry){
+    public boolean removeEntry(Entry entry) {
         return entryList.remove(entry.getDate(), entry);
     }
-    
-    public boolean removeEntry(Calendar date){
+
+    public boolean removeEntry(Calendar date) {
         return entryList.remove(date) != null;
     }
-    
-    public Entry getEntry(Calendar date){
+
+    public Entry getEntry(Calendar date) {
         return entryList.get(date);
     }
-    
-    public ArrayList<TextFlow> getEntriesText(Calendar day){
+
+    public ArrayList<TextFlow> getEntriesText(Calendar day) {
         ArrayList<TextFlow> entriesText = new ArrayList<>();
-        
-        
+
         return entriesText;
     }
-    
-    public void setDay(Calendar date){
+
+    public void setDay(Calendar date) {
         currentDay = date;
         currentDay = setZeroes(currentDay);
         nextDay = (Calendar) currentDay.clone();
@@ -103,8 +116,9 @@ public class DiaryFXMLController extends Controller{
         obsEntryList = FXCollections.observableList(subList);
         diaryListView.setItems(obsEntryList);
     }
-    private void testData(){
-        
+
+    private void testData() {
+
         addEntry(new Mood(Calendar.getInstance(), "Sad"));
         Calendar cal2 = Calendar.getInstance();
         cal2.add(Calendar.DATE, -3);
@@ -112,30 +126,32 @@ public class DiaryFXMLController extends Controller{
         Calendar cal3 = (Calendar) cal2.clone();
         cal3.add(Calendar.HOUR, 1);
         addEntry(new Mood(cal3, "Sad"));
-        
+
     }
-    private Calendar setZeroes(Calendar day){
+
+    private Calendar setZeroes(Calendar day) {
         day.set(Calendar.HOUR_OF_DAY, 0);
         day.set(Calendar.MINUTE, 0);
         day.set(Calendar.SECOND, 0);
         day.set(Calendar.MILLISECOND, 0);
         return day;
     }
+
     @FXML
-    protected void updateDate(ActionEvent event){
+    protected void updateDate(ActionEvent event) {
         Calendar date = GregorianCalendar.from(datePicker.getValue().atStartOfDay().atZone(ZoneId.systemDefault()));
         setDay(date);
     }
-    
+
     //Implement dayCellFactory to read number of entries on each date and 
-    private void dayCellSetup(){
+    private void dayCellSetup() {
         final Callback<DatePicker, DateCell> dayCellFactory = (final DatePicker datePicker1) -> new DateCell() {
             @Override
             public void updateItem(LocalDate item, boolean empty) {
                 super.updateItem(item, empty);
                 Calendar cal = GregorianCalendar.from(item.atStartOfDay().atZone(ZoneId.systemDefault()));
                 Calendar cal2 = (Calendar) cal.clone();
-                cal2.add(Calendar.DATE,1);
+                cal2.add(Calendar.DATE, 1);
                 List<Entry> subList = entryList.values()
                         .stream()
                         .filter(p -> p.getDate().after(cal))
@@ -149,10 +165,12 @@ public class DiaryFXMLController extends Controller{
         };
         datePicker.setDayCellFactory(dayCellFactory);
     }
+
     /**
      * Initializes JavaFX controller
-     * @param url 
-     * @param rb 
+     *
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
