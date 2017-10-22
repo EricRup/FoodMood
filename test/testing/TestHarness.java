@@ -70,7 +70,7 @@ public class TestHarness extends Application{
         }
         
         System.out.println("Navigating to Diary\n---------------------------");
-        DiaryFXMLController dControl = (DiaryFXMLController) mControl.view("Diary",primaryStage);
+        DiaryFXMLController dControl = (DiaryFXMLController) mControl.view("Diary");
         if (mControl.getCurView().equals("Diary"))
             System.out.println("Successfully entered Diary View");
         else
@@ -133,7 +133,7 @@ public class TestHarness extends Application{
             System.err.println("Failed to remove 'Sad'");
         
         System.out.println("Traversing to Menu\n---------------------------");
-        mControl.view("Menu", primaryStage);
+        mControl.view("Menu");
         if ("Menu".equals(mControl.getCurView()))
             System.out.println("Successful traversal to Menu");
         else
@@ -141,7 +141,7 @@ public class TestHarness extends Application{
         
         
         System.out.println("Traversing to Analysis\n---------------------------");
-        AnalysisFXMLController aControl = (AnalysisFXMLController) mControl.view("Analysis", primaryStage);        
+        AnalysisFXMLController aControl = (AnalysisFXMLController) mControl.view("Analysis");        
         if ("Analysis".equals(mControl.getCurView()))
             System.out.println("Successful traversal to Analysis");
         else

@@ -18,7 +18,7 @@
       
         <TextField fx:id="Username" layoutX="150.0" layoutY="130.0" prefHeight="23.0" prefWidth="200.0" promptText="Enter User Name" />
         <PasswordField fx:id="Password" layoutX="150.0" layoutY="160.0" prefHeight="23.0" prefWidth="200.0" promptText="Enter Password" />
-        <Button fx:id="LoginButton" layoutX="150.0" layoutY="200.0" prefHeight="23.0" prefWidth="200.0" text="Login" />
+        <Button fx:id="LoginButton" layoutX="150.0" layoutY="200.0" prefHeight="23.0" prefWidth="200.0" onAction="#handleSubmitButtonAction"  text="Login" />
         
     </children>
 </AnchorPane>
