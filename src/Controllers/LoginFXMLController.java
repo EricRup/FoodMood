@@ -94,4 +94,12 @@ public class LoginFXMLController extends Controller implements Initializable {
         return null;
     }
     
+        /**
+     * Null check of username and password field
+     * @return True = username and/or password field are empty, False = username and password not empty
+     */
+    private boolean isNull() {
+        return Username.getText().isEmpty() || Password.getText().isEmpty();
+    }
+    
 }
