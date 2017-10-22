@@ -42,7 +42,15 @@ public class DiaryFXMLController extends Controller{
         
     }
     
-    
+    @FXML protected void addOnClick(ActionEvent event){
+        
+    }
+    @FXML protected void editOnClick(ActionEvent event){
+        
+    }
+    @FXML protected void deleteOnClick(ActionEvent event){
+        
+    }
     /**
      * Add entry to static entry list
      * @param entry the entry to add
