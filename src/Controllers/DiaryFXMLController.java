@@ -54,13 +54,11 @@ public class DiaryFXMLController extends Controller {
 
     @FXML
     protected void addOnClick(ActionEvent event) {
-        
-        addEntry(new Mood(Calendar.getInstance(), textfield.getText()));
+
     }
 
     @FXML
     protected void editOnClick(ActionEvent event) {
-
     }
 
     @FXML
