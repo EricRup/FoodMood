@@ -34,7 +34,7 @@ public abstract class Controller implements Initializable {
             return loader.getController();
         }   
         catch(IOException e){
-            System.err.println("Error: Class name ["+targetStage+"] doesn't exist in MenuLoader");
+            System.err.println("Error: Class name ["+targetStage+"] doesn't exist in MenuLoader\n"+e.getMessage());
         }
         return null;
     }
