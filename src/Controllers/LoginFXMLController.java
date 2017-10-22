@@ -15,6 +15,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 /**
@@ -23,8 +27,14 @@ import javafx.stage.Stage;
  * @author David
  */
 public class LoginFXMLController extends Controller implements Initializable {
-   
     private String curView;
+    @FXML
+    private TextField Username;
+    @FXML
+    private PasswordField Password;
+    @FXML
+    private Button LoginButton;
+
             
      public LoginFXMLController(){
         curView = "Login";        
@@ -41,23 +51,26 @@ public class LoginFXMLController extends Controller implements Initializable {
 
         }  
     }
-        /*
-     * FXML Scene Login
-     */
-    @FXML private Text actiontarget;
     
-    @FXML protected void handleSubmitButtonAction(ActionEvent event) {
-        actiontarget.setText("Signing In");
+    private void showMainMenu() {
+        // Close Login Stage
+        Stage temp = (Stage) Username.getScene().getWindow();
+        temp.close();
+        try {
+            // Loads FXML resources and create,display a FXML scene 
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/Menu.fxml"));
+            Parent root = loader.load();
+            Stage base = new Stage();
+            base.setTitle("FoodMood - Menu");
+            Scene main = new Scene(root);
+            base.setScene(main);
+            base.show();
+        } catch (IOException except) {
+            System.out.println("Error occured: " + except.toString());
+        }
     }
-    public void start(Stage stage) throws Exception {
-       Parent root = FXMLLoader.load(getClass().getResource("LoginFXML.fxml"));
-    
-        Scene scene = new Scene(root, 300, 275);
-    
-        stage.setTitle("FXML Welcome");
-        stage.setScene(scene);
-        stage.show();
-    }
+      
+
     /**
      * Change the view to the designated stage
      * @param stage the stage to change the view to. Proper noun format i.e. Diary or Analysis
