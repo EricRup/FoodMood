@@ -11,8 +11,7 @@ import javafx.fxml.Initializable;
  *
  * @author Eric, David
  */
-public class MenuFXMLController extends Controller implements Initializable {
-
+public class MenuFXMLController extends Controller implements Initializable{
     private DiaryFXMLController dControl;
     private AnalysisFXMLController aControl;
 
@@ -37,7 +36,7 @@ public class MenuFXMLController extends Controller implements Initializable {
             entryList = new EntryList();
         }
     }
-
+  
     @FXML
     protected void handleDiaryButtonAction(ActionEvent event) {
         view("Diary");
@@ -47,5 +46,4 @@ public class MenuFXMLController extends Controller implements Initializable {
     protected void handleAnalysisButtonAction(ActionEvent event) {
         view("Analysis");
     }
-
 }
