@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<GridPane id="GridPane" hgap="10" prefHeight="400.0" prefWidth="600.0" vgap="10" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111" fx:controller="Controllers.MenuFXMLController">
+<GridPane id="GridPane" hgap="10" prefHeight="400.0" prefWidth="600.0" vgap="10" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MenuFXMLController">
     
     <padding><Insets bottom="10" left="25" right="25" top="25" /></padding>
    <columnConstraints>
@@ -30,9 +30,9 @@
    <children>
       <VBox prefHeight="53.0" prefWidth="136.0">
          <children>
-            <Button mnemonicParsing="false" text="View Diary" />
+            <Button mnemonicParsing="false" onAction="#handleViewDiary" text="View Diary" />
             <Separator prefWidth="200.0" />
-            <Button mnemonicParsing="false" text="View Analysis" />
+            <Button mnemonicParsing="false" onAction="#handleViewAnalysis" text="View Analysis" />
          </children>
       </VBox>
    </children>

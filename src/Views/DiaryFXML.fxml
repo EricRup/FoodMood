@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.Pane?>
 
 
-<Pane fx:id="calendarPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="447.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.DiaryFXMLController" />
-
+<Pane fx:id="calendarPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.DiaryFXMLController">
+   <children>
+      <DatePicker fx:id="datePicker" layoutX="227.0" layoutY="14.0" />
+      <Label layoutX="182.0" layoutY="18.0" text="Date" />
+      <ListView fx:id="diaryListView" layoutX="14.0" layoutY="53.0" prefHeight="384.0" prefWidth="569.0" />
+   </children>
+</Pane>
