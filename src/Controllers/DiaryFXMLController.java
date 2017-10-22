@@ -14,6 +14,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import Views.AnchorPaneNode;
+import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.TextFlow;
 
@@ -21,16 +23,17 @@ import javafx.scene.text.TextFlow;
  *
  * @author Eric
  */
-
-public class DiaryFXMLController extends Controller{
+public class DiaryFXMLController extends Controller {
 
     private ArrayList<AnchorPaneNode> allCalendarDays = new ArrayList<>(35);
     private VBox view;
     private Text calendarTitle;
     private YearMonth currentYearMonth;
-    
+
+    @FXML //  fx:id="MoodSelect"
+    private ComboBox<String> moodSelect;
+
     /**
-     * Create a calendar view
      * Instantiates to current month
      */
     public DiaryFXMLController() {
@@ -43,15 +46,15 @@ public class DiaryFXMLController extends Controller{
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 7; j++) {
                 AnchorPaneNode ap = new AnchorPaneNode();
-                ap.setPrefSize(200,200);
-                calendar.add(ap,j,i);
+                ap.setPrefSize(200, 200);
+                calendar.add(ap, j, i);
                 allCalendarDays.add(ap);
             }
         }
         // Days of the week labels
-        Text[] dayNames = new Text[]{ new Text("Sunday"), new Text("Monday"), new Text("Tuesday"),
-                                        new Text("Wednesday"), new Text("Thursday"), new Text("Friday"),
-                                        new Text("Saturday") };
+        Text[] dayNames = new Text[]{new Text("Sunday"), new Text("Monday"), new Text("Tuesday"),
+            new Text("Wednesday"), new Text("Thursday"), new Text("Friday"),
+            new Text("Saturday")};
         GridPane dayLabels = new GridPane();
         dayLabels.setPrefWidth(600);
         Integer col = 0;
@@ -75,54 +78,56 @@ public class DiaryFXMLController extends Controller{
         // Create the calendar view
         view = new VBox(titleBar, dayLabels, calendar);
     }
-    
-    public DiaryFXMLController(Calendar day){
+
+    public DiaryFXMLController(Calendar day) {
         ArrayList<TextFlow> times = getEntriesText(day);
         view = new VBox();
     }
-    
+
     /**
      * Add entry to static entry list
+     *
      * @param entry the entry to add
      * @return the Date identifier. Null if failed to add
      */
-    public Calendar addEntry(Entry entry){
+    public Calendar addEntry(Entry entry) {
         return entryList.add(entry);
     }
-    
+
     /**
      * Remove an entry from the entry list
+     *
      * @param entry the entry to remove
      * @return if the removal was successful
      */
-    public boolean removeEntry(Entry entry){
+    public boolean removeEntry(Entry entry) {
         return entryList.remove(entry.getDate(), entry);
     }
-    
-    public boolean removeEntry(Calendar date){
+
+    public boolean removeEntry(Calendar date) {
         return entryList.remove(date) != null;
     }
-    
-    public Entry getEntry(Calendar date){
+
+    public Entry getEntry(Calendar date) {
         return entryList.get(date);
     }
-    
-    public ArrayList<TextFlow> getEntriesText(Calendar day){
+
+    public ArrayList<TextFlow> getEntriesText(Calendar day) {
         ArrayList<TextFlow> entriesText = new ArrayList<>();
-        
-        
+
         return entriesText;
     }
 
     /**
      * Set the days of the calendar to correspond to the appropriate date
+     *
      * @param yearMonth year and month of month to render
      */
     public void populateCalendar(YearMonth yearMonth) {
         // Get the date we want to start with on the calendar
         LocalDate calendarDate = LocalDate.of(yearMonth.getYear(), yearMonth.getMonthValue(), 1);
         // Dial back the day until it is SUNDAY (unless the month starts on a sunday)
-        while (!calendarDate.getDayOfWeek().toString().equals("SUNDAY") ) {
+        while (!calendarDate.getDayOfWeek().toString().equals("SUNDAY")) {
             calendarDate = calendarDate.minusDays(1);
         }
         // Populate the calendar with day numbers
@@ -142,7 +147,8 @@ public class DiaryFXMLController extends Controller{
     }
 
     /**
-     * Move the month back by one. Repopulate the calendar with the correct dates.
+     * Move the month back by one. Repopulate the calendar with the correct
+     * dates.
      */
     private void previousMonth() {
         currentYearMonth = currentYearMonth.minusMonths(1);
@@ -150,7 +156,8 @@ public class DiaryFXMLController extends Controller{
     }
 
     /**
-     * Move the month forward by one. Repopulate the calendar with the correct dates.
+     * Move the month forward by one. Repopulate the calendar with the correct
+     * dates.
      */
     private void nextMonth() {
         currentYearMonth = currentYearMonth.plusMonths(1);
@@ -168,15 +175,15 @@ public class DiaryFXMLController extends Controller{
     public void setAllCalendarDays(ArrayList<AnchorPaneNode> allCalendarDays) {
         this.allCalendarDays = allCalendarDays;
     }
-    
+
     /**
      * Initializes JavaFX controller
-     * @param url 
-     * @param rb 
+     *
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     }
-    
-    
+
 }
