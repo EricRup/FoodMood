@@ -17,4 +17,8 @@ public class Mood extends Entry{
     public Mood(Calendar date, String name) {
         super(date, name);
     }
+    
+    public String toString(){
+        return getName();
+    }
 }

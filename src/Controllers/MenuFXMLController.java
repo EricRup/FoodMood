@@ -46,4 +46,10 @@ public class MenuFXMLController extends Controller implements Initializable{
     protected void handleAnalysisButtonAction(ActionEvent event) {
         view("Analysis");
     }
+    @FXML protected void handleViewDiary(ActionEvent event) {
+        dControl = (DiaryFXMLController) view("Diary");
+    }
+    @FXML protected void handleViewAnalysis(ActionEvent event) {
+        aControl = (AnalysisFXMLController) view("Analysis");
+    }
 }
