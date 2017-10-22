@@ -15,7 +15,7 @@
                 <Font size="25.0" />
             </font>
         </Text>
-        <TextField fx:id="FoodEntry" layoutX="300.0" layoutY="58.0" prefHeight="23.0" prefWidth="150.0" promptText="Enter Food" />
+        <TextField fx:id="FoodEntry" layoutX="310.0" layoutY="58.0" prefHeight="23.0" prefWidth="170.0" promptText="Enter Food" />
 
         <ComboBox fx:id="MoodSelect" layoutX="21.0" layoutY="58.0" prefHeight="23.0" prefWidth="170.0" promptText="Choose Your Mood" >
             <items>
@@ -33,6 +33,8 @@
                 </FXCollections>
             </items>
         </ComboBox>
+        
+        <Button fx:id="ConfirmButton" layoutX="150.0" layoutY="200.0" prefHeight="23.0" prefWidth="200.0" text="Confirm" />
 
     </children>
 </AnchorPane>
