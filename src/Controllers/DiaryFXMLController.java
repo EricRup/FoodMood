@@ -21,7 +21,7 @@ import javafx.scene.text.TextFlow;
 
 /**
  *
- * @author Eric
+ * @author Eric, David
  */
 public class DiaryFXMLController extends Controller {
 
