@@ -75,29 +75,6 @@ public class LoginFXMLController extends Controller implements Initializable {
         }
     }
 
-    /**
-     * Change the view to the designated stage
-     *
-     * @param stage the stage to change the view to. Proper noun format i.e.
-     * Diary or Analysis
-     * @return the controller for the requested stage (as a generic Controller)
-     */
-    public Controller view(String targetStage, Stage stage) {
-
-        if (!curView.equals(targetStage)) {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/" + targetStage + "FXML.fxml"));
-                Parent root = loader.load();
-                stage.setTitle("FoodMood - " + targetStage);
-                stage.setScene(new Scene(root));
-                curView = targetStage;
-                return loader.getController();
-            } catch (IOException e) {
-                System.err.println("Error: Class name [" + targetStage + "] doesn't exist in MenuLoader");
-            }
-        }
-        return null;
-    }
 
     /**
      * Null check of username and password field
@@ -109,9 +86,6 @@ public class LoginFXMLController extends Controller implements Initializable {
         return Username.getText().isEmpty() || Password.getText().isEmpty();
     }
 
-    @FXML
-    protected void handleSubmitButtonAction(ActionEvent event) {
-        showMenu();
-    }
+
 
 }
