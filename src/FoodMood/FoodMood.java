@@ -1,5 +1,6 @@
 package FoodMood;
 
+import Controllers.LoginFXMLController;
 import Controllers.MenuFXMLController;
 import Models.EntryList;
 import javafx.application.Application;
@@ -14,9 +15,9 @@ import javafx.stage.Stage;
  */
 public class FoodMood extends Application{
     public static EntryList entryList;
+    public static LoginFXMLController lControl;
     public static MenuFXMLController mControl;
     public static Stage primaryStage;
-    
     
     public static void main(String[] args) {
         entryList = new EntryList();
@@ -29,13 +30,19 @@ public class FoodMood extends Application{
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        //Startup Scene - Login
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/LoginFXML.fxml"));
         Parent root = loader.load();
-        mControl = (MenuFXMLController) loader.getController();
+        lControl = (LoginFXMLController) loader.getController();
         FoodMood.primaryStage = primaryStage;
         FoodMood.primaryStage.setTitle("FoodMood - Login");
         FoodMood.primaryStage.setScene(new Scene(root));
         FoodMood.primaryStage.show();
+        
+        //Scene 2 - Menu
+        
+        //Scene 3 - Diary
+        
     }
     
 }

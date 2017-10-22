@@ -8,32 +8,16 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<GridPane id="GridPane" hgap="10" prefHeight="400.0" prefWidth="600.0" vgap="10" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111" fx:controller="Controllers.MenuFXMLController">
-    
-    <padding><Insets bottom="10" left="25" right="25" top="25" /></padding>
-   <columnConstraints>
-      <ColumnConstraints />
-      <ColumnConstraints />
-      <ColumnConstraints />
-   </columnConstraints>
-   <rowConstraints>
-      <RowConstraints />
-      <RowConstraints />
-      <RowConstraints />
-      <RowConstraints />
-      <RowConstraints />
-      <RowConstraints />
-      <RowConstraints />
-      <RowConstraints />
-      <RowConstraints />
-   </rowConstraints>
-   <children>
-      <VBox prefHeight="53.0" prefWidth="136.0">
-         <children>
-            <Button mnemonicParsing="false" text="View Diary" />
-            <Separator prefWidth="200.0" />
-            <Button mnemonicParsing="false" text="View Analysis" />
-         </children>
-      </VBox>
-   </children>
-</GridPane>
+<AnchorPane id="AnchorPane" prefHeight="300.0" prefWidth="500.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="Controllers.MenuFXMLController">
+    <children>
+        <Text layoutX="150.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FoodMood Menu" wrappingWidth="311.12109375">
+            <font>
+                <Font size="25.0" />
+            </font>
+        </Text>
+        
+        <Button fx:id="DiaryButton" layoutX="150.0" layoutY="120.0" prefHeight="23.0" prefWidth="200.0" onAction="#handleDiaryButtonAction"  text="Diary" />
+        <Button fx:id="AnalysisButton" layoutX="150.0" layoutY="150.0" prefHeight="23.0" prefWidth="200.0" onAction="#handleAnalysisButtonAction"  text="Analysis" />
+        
+    </children>
+</AnchorPane>

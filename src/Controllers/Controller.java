@@ -11,6 +11,7 @@ import javafx.scene.Scene;
  *
  * @author Eric
  */
+
 public abstract class Controller implements Initializable {
     protected static EntryList entryList = new EntryList();
     protected static String curView = "";
