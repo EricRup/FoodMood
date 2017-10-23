@@ -178,9 +178,5 @@ public class DiaryFXMLController extends Controller {
         testData();
         dayCellSetup();
         setDay(Calendar.getInstance());
-
-        
-        diaryListView.setItems(obsEntryList);
-        
     }
 }
