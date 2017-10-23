@@ -1,6 +1,6 @@
 package Models;
 
-import java.util.Calendar;
+import java.time.LocalDateTime;
 
 /**
  *
@@ -14,7 +14,7 @@ public class Mood extends Entry{
      * @param date is the date and time of the entry
      * @param name is the name of the food item as a String
      */
-    public Mood(Calendar date, String name) {
+    public Mood(LocalDateTime date, String name) {
         super(date, name);
     }
     

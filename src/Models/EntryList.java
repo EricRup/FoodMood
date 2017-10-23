@@ -1,13 +1,13 @@
 package Models;
 
-import java.util.Calendar;
+import java.time.LocalDateTime;
 import java.util.TreeMap;
 
 /**
  *
  * @author Eric
  */
-public class EntryList extends TreeMap<Calendar, Entry> {
+public class EntryList extends TreeMap<LocalDateTime, Entry> {
     
     /**
      * Add method to use date/time as key for entries.
@@ -15,13 +15,13 @@ public class EntryList extends TreeMap<Calendar, Entry> {
      * Should never collide in real world conditions
      * 
      * @param toAdd the entry to add to the list
-     * @return the Calendar identifier of the new entry
+     * @return the LocalDateTime identifier of the new entry
      **/
-    public Calendar add(Entry toAdd){
-        Calendar manip = toAdd.getDate();
+    public LocalDateTime add(Entry toAdd){
+        LocalDateTime manip = toAdd.getDate();
         
         while(get(manip) != null){
-            manip.add(Calendar.MILLISECOND, 1);
+            manip.plusNanos(1);
         }
         toAdd.setDate(manip);
         this.put(manip, toAdd);
