@@ -3,16 +3,17 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 
 <Pane fx:id="calendarPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.DiaryFXMLController">
    <children>
       <DatePicker fx:id="datePicker" layoutX="85.0" layoutY="14.0" onAction="#updateDate" />
       <Label layoutX="40.0" layoutY="18.0" text="Date" />
-      <ListView fx:id="diaryListView" layoutX="14.0" layoutY="53.0" prefHeight="384.0" prefWidth="569.0" />
       <Button fx:id="addButton" layoutX="415.0" layoutY="14.0" mnemonicParsing="false" onAction="#addOnClick" text="Add" />
       <Button fx:id="editButton" disable="true" layoutX="460.0" layoutY="14.0" mnemonicParsing="false" onAction="#editOnClick" text="Edit" />
       <Button fx:id="deleteButton" disable="true" layoutX="502.0" layoutY="14.0" mnemonicParsing="false" onAction="#deleteOnClick" text="Delete" />
+      <VBox fx:id="diaryListBox" layoutX="134.0" layoutY="63.0" prefHeight="394.0" prefWidth="466.0" />
+      <VBox fx:id="timeBox" layoutX="2.0" layoutY="56.0" prefHeight="394.0" prefWidth="149.0" />
    </children>
 </Pane>
