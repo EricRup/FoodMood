@@ -6,7 +6,7 @@
 package Models;
 
 import java.util.ArrayList;
-import java.util.Calendar;
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Optional;
@@ -18,7 +18,7 @@ public class Meal extends Entry{
     
     ArrayList<Food> foodConsumed = new ArrayList<>();
     
-    public Meal(Calendar date, String name) {
+    public Meal(LocalDateTime date, String name) {
         super(date, name);
     }
     public Meal addFood(String iName){

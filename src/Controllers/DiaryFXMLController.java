@@ -2,21 +2,23 @@ package Controllers;
 
 import static Controllers.Controller.entryList;
 import Models.Entry;
+import Models.Food;
+import Models.Meal;
 import Models.Mood;
 import java.net.URL;
 import java.time.LocalDate;
-import java.time.ZoneId;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.ResourceBundle;
 import java.util.List;
 import java.util.stream.Collectors;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
@@ -25,7 +27,8 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.TextFlow;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 
 
@@ -35,47 +38,100 @@ import javafx.util.Callback;
  */
 public class DiaryFXMLController extends Controller {
 
-    private Calendar currentDay, nextDay;
+    private LocalDate currentDay;
     private ObservableList obsEntryList;
-    
-    @FXML //  fx:id="MoodSelect"
-    private ComboBox<String> moodSelect;
-
-    @FXML
-    private TextField textfield;
-
-    @FXML
-    DatePicker datePicker;
-    @FXML
-    ListView diaryListView;
+    @FXML DatePicker datePicker;
+    @FXML VBox diaryListBox;
+    @FXML ListView diaryListView;
+    @FXML VBox timeBox;
+    @FXML ListView zero, two, four, six, eight, ten, twelve, fourteen, sixteen, eighteen, twenty, twentyTwo;
     
     /**
      * Create a calendar view Instantiates to current month
      */
-    /*public DiaryFXMLController() {
-        ArrayList<String> times = new ArrayList<>();
-        times.add("00:01");
-        times.add("02:00");
-        times.add("04:00");
-        times.add("06:00");
-        times.add("08:00");
-        times.add("10:00");
-        times.add("12:00");
-        times.add("14:00");
-        times.add("16:00");
-        times.add("18:00");
-        times.add("20:00");
-        times.add("22:00");
-        
-        for(String t : times){
-            timeBox.getChildren().add(new Label(t));
-        }
-        
-    }*/
+    public DiaryFXMLController() {
+    }
 
     @FXML
     protected void addOnClick(ActionEvent event) {
-        //obsEntryList.add(textfield.getText());
+        System.out.println("Working");
+        List<Node> temp = diaryListBox.getChildren().filtered(p -> p.isFocused());
+        if (temp.size() > 0){
+            final Stage popup = new Stage();
+            popup.initModality(Modality.APPLICATION_MODAL);
+            popup.initOwner(FoodMood.FoodMood.primaryStage);
+            VBox addBox = new VBox(20);
+            Button foodButton = new Button("Food");
+            //Button moodButton = new Button("Mood");
+            foodButton.setOnAction((ActionEvent event1) -> {
+                VBox foodBox = new VBox(20);
+                foodBox.getChildren().add(new Label("Meal Name"));
+                foodBox.getChildren().add(new TextField());
+                foodBox.getChildren().add(new Label("Food Name"));
+                ComboBox foods = new ComboBox();
+                ArrayList<Food> foodList = new ArrayList(5);
+                foodList.add(new Food("Milk"));
+                foodList.add(new Food("Eggs"));
+                foodList.add(new Food("Cheese"));
+                foodList.add(new Food("Fries"));
+                foods.setItems(FXCollections.observableList(foodList));
+                foodBox.getChildren().add(foods);
+                Button addButton = new Button("Add");
+                addButton.setOnAction((ActionEvent event2) -> {
+                    LocalDateTime tempDate = currentDay.atStartOfDay();
+                    switch(temp.get(0).getId()){
+                        case "zero":
+                            tempDate = tempDate.plusHours(0);
+                            break;
+                        case "two": 
+                            tempDate = tempDate.plusHours(2);
+                            break;
+                        case "four": 
+                            tempDate = tempDate.plusHours(4);
+                            break;
+                        case "six": 
+                            tempDate = tempDate.plusHours(6);
+                            break;
+                        case "eight": 
+                            tempDate = tempDate.plusHours(8);
+                            break;
+                        case "ten": 
+                            tempDate = tempDate.plusHours(10);
+                            break;
+                        case "twelve": 
+                            tempDate = tempDate.plusHours(12);
+                            break;
+                        case "fourteen": 
+                            tempDate = tempDate.plusHours(14);
+                            break;
+                        case "sixteen": 
+                            tempDate = tempDate.plusHours(16);
+                            break;
+                        case "eighteen": 
+                            tempDate = tempDate.plusHours(18);
+                            break;
+                        case "twenty": 
+                            tempDate = tempDate.plusHours(20);
+                            break;
+                        case "twentyTwo":
+                            tempDate = tempDate.plusHours(22);
+                            break;
+                    }
+                    Meal meal = new Meal(tempDate, ((TextField)foodBox.getChildren().get(1)).getText());
+                    meal.addFood((Food)foods.valueProperty().getValue());
+                    this.addEntry(meal);
+                    filterDailyList(currentDay.atStartOfDay());
+                    popup.close();
+                });
+                foodBox.getChildren().add(addButton);
+                Scene foodPopup = new Scene(foodBox, 300, 300);
+                popup.setScene(foodPopup);
+            });
+            addBox.getChildren().add(foodButton);
+            Scene popupScene = new Scene(addBox, 200, 200);
+            popup.setScene(popupScene);
+            popup.show();
+        }
     }
 
     @FXML
@@ -94,7 +150,7 @@ public class DiaryFXMLController extends Controller {
      * @param entry the entry to add
      * @return the Date identifier. Null if failed to add
      */
-    public Calendar addEntry(Entry entry) {
+    public LocalDateTime addEntry(Entry entry) {
         return entryList.add(entry);
     }
 
@@ -108,58 +164,80 @@ public class DiaryFXMLController extends Controller {
         return entryList.remove(entry.getDate(), entry);
     }
 
-    public boolean removeEntry(Calendar date) {
+    public boolean removeEntry(LocalDateTime date) {
         return entryList.remove(date) != null;
     }
 
-    public Entry getEntry(Calendar date) {
+    public Entry getEntry(LocalDateTime date) {
         return entryList.get(date);
     }
-
-    public ArrayList<TextFlow> getEntriesText(Calendar day) {
-        ArrayList<TextFlow> entriesText = new ArrayList<>();
-
-        return entriesText;
+    
+    
+    public void filterDailyList(LocalDateTime date){
+        for(int i = 0; i < 12; i++){
+            LocalDateTime tempDate;
+            tempDate = date.plusHours(i*2);
+            System.out.println(tempDate.toString() + ": " + tempDate.plusHours(2).toString());
+            List<Entry> entries = entryList.values()
+                    .stream()
+                    .filter(p -> p.getDate().isAfter(tempDate.minusNanos(1)))
+                    .filter(p -> p.getDate().isBefore(tempDate.plusHours(2)))
+                    .collect(Collectors.toList());
+           ObservableList obsEntries = FXCollections.observableList(entries);
+            switch(i){
+                case 0:
+                    zero.setItems(obsEntries);
+                    break;
+                case 1:
+                    two.setItems(obsEntries);
+                    break;
+                case 2:
+                    four.setItems(obsEntries);
+                    break;
+                case 3:
+                    six.setItems(obsEntries);
+                    break;
+                case 4:
+                    eight.setItems(obsEntries);
+                    break;
+                case 5:
+                    ten.setItems(obsEntries);
+                    break;
+                case 6:
+                    twelve.setItems(obsEntries);
+                    break;
+                case 7:
+                    fourteen.setItems(obsEntries);
+                    break;
+                case 8:
+                    sixteen.setItems(obsEntries);
+                    break;
+                case 9:
+                    eighteen.setItems(obsEntries);
+                    break;
+                case 10:
+                    twenty.setItems(obsEntries);
+                    break;
+                case 11:
+                    twentyTwo.setItems(obsEntries);
+                    break;
+            }
+        }
     }
-     public void setDay(Calendar date) {
-        currentDay = date;
-        currentDay = setZeroes(currentDay);
-        nextDay = (Calendar) currentDay.clone();
-        nextDay.add(Calendar.DATE, 1);
-        nextDay = setZeroes(nextDay);
-        List<Entry> subList = entryList.values()
-                .stream()
-                .filter(p -> p.getDate().after(currentDay))
-                .filter(p -> p.getDate().before(nextDay))
-                .collect(Collectors.toList());
-        obsEntryList = FXCollections.observableList(subList);
-        diaryListView.setItems(obsEntryList);
-     }
 
     private void testData() {
 
-        addEntry(new Mood(Calendar.getInstance(), "Sad"));
-        Calendar cal2 = Calendar.getInstance();
-        cal2.add(Calendar.DATE, -3);
-        addEntry(new Mood(cal2, "Happy"));
-        Calendar cal3 = (Calendar) cal2.clone();
-        cal3.add(Calendar.HOUR, 1);
-        addEntry(new Mood(cal3, "Sad"));
+        LocalDateTime cal = LocalDate.now().atStartOfDay();
+        addEntry(new Mood(cal, "Sad"));
+        addEntry(new Mood(cal.plusHours(4), "Happy"));
+        addEntry(new Mood(cal.plusHours(8), "Happy"));
 
-    }
-
-    private Calendar setZeroes(Calendar day) {
-        day.set(Calendar.HOUR_OF_DAY, 0);
-        day.set(Calendar.MINUTE, 0);
-        day.set(Calendar.SECOND, 0);
-        day.set(Calendar.MILLISECOND, 0);
-        return day;
     }
 
     @FXML
     protected void updateDate(ActionEvent event) {
-        Calendar date = GregorianCalendar.from(datePicker.getValue().atStartOfDay().atZone(ZoneId.systemDefault()));
-        setDay(date);
+        currentDay = datePicker.getValue();
+        filterDailyList(currentDay.atStartOfDay());
     }
 
     //Implement dayCellFactory to read number of entries on each date and 
@@ -168,13 +246,12 @@ public class DiaryFXMLController extends Controller {
             @Override
             public void updateItem(LocalDate item, boolean empty) {
                 super.updateItem(item, empty);
-                Calendar cal = GregorianCalendar.from(item.atStartOfDay().atZone(ZoneId.systemDefault()));
-                Calendar cal2 = (Calendar) cal.clone();
-                cal2.add(Calendar.DATE, 1);
+                LocalDateTime cal = item.atStartOfDay();
+                LocalDateTime cal2 = cal.plusDays(1);
                 List<Entry> subList = entryList.values()
                         .stream()
-                        .filter(p -> p.getDate().after(cal))
-                        .filter(p -> p.getDate().before(cal2))
+                        .filter(p -> p.getDate().isAfter(cal))
+                        .filter(p -> p.getDate().isBefore(cal2))
                         .collect(Collectors.toList());
                 if (subList.size() > 0) {
                     this.setTooltip(new Tooltip(subList.size() + " entries"));
@@ -195,10 +272,8 @@ public class DiaryFXMLController extends Controller {
     public void initialize(URL url, ResourceBundle rb) {
         testData();
         dayCellSetup();
-        setDay(Calendar.getInstance());
-
-        
-        diaryListView.setItems(obsEntryList);
-        
+        datePicker.setValue(LocalDate.now());
+        currentDay = datePicker.getValue();
+        filterDailyList(LocalDate.now().atStartOfDay());
     }
 }

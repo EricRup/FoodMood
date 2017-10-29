@@ -1,13 +1,13 @@
 package Models;
 
-import java.util.Calendar;
+import java.time.LocalDateTime;
 
 /**
  *
  * @author Eric
  */
 public abstract class Entry {
-    private Calendar date;
+    private LocalDateTime date;
     private String name;
     
     /**
@@ -15,7 +15,7 @@ public abstract class Entry {
      * @param date is the date and time associated with this entry
      * @param name the name of the entry
      */
-    public Entry(Calendar date, String name){
+    public Entry(LocalDateTime date, String name){
         this.date = date;
         this.name = name;
     }
@@ -23,14 +23,14 @@ public abstract class Entry {
     /**
      * @param date the date to set
      */
-    public void setDate(Calendar date){
+    public void setDate(LocalDateTime date){
         this.date = date;
     }
     
     /**
      * @return the date
      */
-    public Calendar getDate(){
+    public LocalDateTime getDate(){
         return date;
     }
     
@@ -50,6 +50,6 @@ public abstract class Entry {
     
     @Override
     public String toString(){
-        return "t:"+date.getTimeInMillis();
+        return "date:"+date.toString();
     }
 }
