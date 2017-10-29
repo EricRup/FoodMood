@@ -13,7 +13,7 @@
       <Label layoutX="40.0" layoutY="18.0" text="Date" />
       <Button fx:id="addButton" focusTraversable="false" layoutX="415.0" layoutY="14.0" mnemonicParsing="false" onAction="#addOnClick" text="Add" />
       <Button fx:id="editButton" disable="true" layoutX="460.0" layoutY="14.0" mnemonicParsing="false" onAction="#editOnClick" text="Edit" />
-      <Button fx:id="deleteButton" disable="true" layoutX="502.0" layoutY="14.0" mnemonicParsing="false" onAction="#deleteOnClick" text="Delete" />
+      <Button fx:id="deleteButton" layoutX="502.0" layoutY="14.0" mnemonicParsing="false" onAction="#deleteOnClick" text="Delete" />
       <VBox fx:id="timeBox" layoutX="2.0" layoutY="56.0" prefHeight="394.0" prefWidth="110.0">
          <children>
             <Label alignment="CENTER" prefHeight="32.5" prefWidth="153.0" text="00:00" />
