@@ -37,15 +37,22 @@ public class DiaryFXMLController extends Controller {
 
     private Calendar currentDay, nextDay;
     private ObservableList obsEntryList;
-    @FXML DatePicker datePicker;
-    @FXML VBox diaryListBox;
-    @FXML ListView diaryListView;
-    @FXML VBox timeBox;
+    
+    @FXML //  fx:id="MoodSelect"
+    private ComboBox<String> moodSelect;
+
+    @FXML
+    private TextField textfield;
+
+    @FXML
+    DatePicker datePicker;
+    @FXML
+    ListView diaryListView;
     
     /**
      * Create a calendar view Instantiates to current month
      */
-    public DiaryFXMLController() {
+    /*public DiaryFXMLController() {
         ArrayList<String> times = new ArrayList<>();
         times.add("00:01");
         times.add("02:00");
@@ -64,11 +71,11 @@ public class DiaryFXMLController extends Controller {
             timeBox.getChildren().add(new Label(t));
         }
         
-    }
+    }*/
 
     @FXML
     protected void addOnClick(ActionEvent event) {
-        obsEntryList.add(textfield.getText());
+        //obsEntryList.add(textfield.getText());
     }
 
     @FXML
@@ -114,30 +121,20 @@ public class DiaryFXMLController extends Controller {
 
         return entriesText;
     }
-    
-    public void setDay(Calendar date){
-        diaryListBox.getChildren().clear();
-        filterDailyList(date);
-    }
-    
-    public void filterDailyList(Calendar date){
-        Calendar cycleTime = (Calendar) date.clone();
-        cycleTime.add(Calendar.HOUR_OF_DAY,2);
-        for(int i = 0; i < 12; i++){
-            ListView timePeriod = new ListView();
-            
-            List<Entry> entries = entryList.values()
-                    .stream()
-                    .filter(p -> p.getDate().after(date))
-                    .filter(p -> p.getDate().before(cycleTime))
-                    .collect(Collectors.toList());
-            ObservableList obsEntries = FXCollections.observableList(entries);
-            timePeriod.setItems(obsEntries);
-            diaryListBox.getChildren().add(timePeriod);
-            date.add(Calendar.HOUR_OF_DAY,2);
-            cycleTime.add(Calendar.HOUR_OF_DAY,2);
-        }
-    }
+     public void setDay(Calendar date) {
+        currentDay = date;
+        currentDay = setZeroes(currentDay);
+        nextDay = (Calendar) currentDay.clone();
+        nextDay.add(Calendar.DATE, 1);
+        nextDay = setZeroes(nextDay);
+        List<Entry> subList = entryList.values()
+                .stream()
+                .filter(p -> p.getDate().after(currentDay))
+                .filter(p -> p.getDate().before(nextDay))
+                .collect(Collectors.toList());
+        obsEntryList = FXCollections.observableList(subList);
+        diaryListView.setItems(obsEntryList);
+     }
 
     private void testData() {
 
