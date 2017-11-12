@@ -21,7 +21,7 @@ public class EntryList extends TreeMap<LocalDateTime, Entry> {
         LocalDateTime manip = toAdd.getDate();
         
         while(get(manip) != null){
-            manip.plusNanos(1);
+            manip = manip.plusNanos(1);
         }
         toAdd.setDate(manip);
         this.put(manip, toAdd);
