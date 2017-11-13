@@ -6,6 +6,7 @@
 package Controllers;
 
 import javafx.event.EventHandler;
+import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 
 /**
@@ -13,8 +14,11 @@ import javafx.scene.input.MouseEvent;
  * @author Walrus
  */
 public class TimeClickHandler implements EventHandler<MouseEvent>{
-       
+    ListView listView;   
+    public TimeClickHandler(ListView listView){
+           this.listView = listView;
+       }
     public void handle(MouseEvent e){
-        System.out.println(e.getPickResult().getIntersectedNode().getId());
+        System.out.println(listView.getId());
     }
 }

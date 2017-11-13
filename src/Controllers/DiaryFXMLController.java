@@ -193,9 +193,9 @@ public class DiaryFXMLController extends Controller {
         datePicker.setValue(LocalDate.now());
         currentDay = datePicker.getValue();
         filterDailyList(LocalDate.now().atStartOfDay());
-        for (Node lv : diaryListBox.getChildren()){
-            lv.setOnMouseClicked(new TimeClickHandler());
-        }
+        diaryListBox.getChildren().forEach((list) -> {
+            list.setOnMouseClicked(new TimeClickHandler((ListView) list));
+        });
     }
     
     
