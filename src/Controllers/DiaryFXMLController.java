@@ -50,6 +50,7 @@ public class DiaryFXMLController extends Controller {
      * Create a calendar view Instantiates to current month
      */
     public DiaryFXMLController() {
+        super();
     }
 
     @FXML
@@ -136,6 +137,7 @@ public class DiaryFXMLController extends Controller {
 
     @FXML
     protected void editOnClick(ActionEvent event) {
+        
     }
 
     @FXML
@@ -174,55 +176,13 @@ public class DiaryFXMLController extends Controller {
     
     
     public void filterDailyList(LocalDateTime date){
-        for(int i = 0; i < 12; i++){
-            LocalDateTime tempDate;
-            tempDate = date.plusHours(i*2);
-            System.out.println(tempDate.toString() + ": " + tempDate.plusHours(2).toString());
-            List<Entry> entries = entryList.values()
-                    .stream()
-                    .filter(p -> p.getDate().isAfter(tempDate.minusNanos(1)))
-                    .filter(p -> p.getDate().isBefore(tempDate.plusHours(2)))
-                    .collect(Collectors.toList());
-           ObservableList obsEntries = FXCollections.observableList(entries);
-            switch(i){
-                case 0:
-                    zero.setItems(obsEntries);
-                    break;
-                case 1:
-                    two.setItems(obsEntries);
-                    break;
-                case 2:
-                    four.setItems(obsEntries);
-                    break;
-                case 3:
-                    six.setItems(obsEntries);
-                    break;
-                case 4:
-                    eight.setItems(obsEntries);
-                    break;
-                case 5:
-                    ten.setItems(obsEntries);
-                    break;
-                case 6:
-                    twelve.setItems(obsEntries);
-                    break;
-                case 7:
-                    fourteen.setItems(obsEntries);
-                    break;
-                case 8:
-                    sixteen.setItems(obsEntries);
-                    break;
-                case 9:
-                    eighteen.setItems(obsEntries);
-                    break;
-                case 10:
-                    twenty.setItems(obsEntries);
-                    break;
-                case 11:
-                    twentyTwo.setItems(obsEntries);
-                    break;
-            }
-        }
+        diaryListBox.getChildren().forEach((list) -> {
+            ListView cur = (ListView) list;
+            int offset = Integer.parseInt(cur.getId());
+            ObservableList obsEntries = FXCollections.observableList(getSubList(date.plusHours(offset*2).minusNanos(1), date.plusHours((offset+1)*2)));
+            cur.setItems(obsEntries);
+            
+        });
     }
 
     private void testData() {
@@ -230,7 +190,7 @@ public class DiaryFXMLController extends Controller {
         LocalDateTime cal = LocalDate.now().atStartOfDay();
         addEntry(new Mood(cal, "Sad"));
         addEntry(new Mood(cal.plusHours(4), "Happy"));
-        addEntry(new Mood(cal.plusHours(8), "Happy"));
+        addEntry(new Mood(cal.plusHours(8), "Tasty"));
 
     }
 
@@ -246,18 +206,13 @@ public class DiaryFXMLController extends Controller {
             @Override
             public void updateItem(LocalDate item, boolean empty) {
                 super.updateItem(item, empty);
-                LocalDateTime cal = item.atStartOfDay();
-                LocalDateTime cal2 = cal.plusDays(1);
-                List<Entry> subList = entryList.values()
-                        .stream()
-                        .filter(p -> p.getDate().isAfter(cal))
-                        .filter(p -> p.getDate().isBefore(cal2))
-                        .collect(Collectors.toList());
+                List<Entry> subList = getSubList(item.atStartOfDay().minusNanos(1), item.plusDays(1).atStartOfDay());
                 if (subList.size() > 0) {
                     this.setTooltip(new Tooltip(subList.size() + " entries"));
                     setStyle("-fx-background-color: #00ffff;");
                 }
             }
+
         };
         datePicker.setDayCellFactory(dayCellFactory);
     }
@@ -275,5 +230,14 @@ public class DiaryFXMLController extends Controller {
         datePicker.setValue(LocalDate.now());
         currentDay = datePicker.getValue();
         filterDailyList(LocalDate.now().atStartOfDay());
+    }
+    
+    
+    private List<Entry> getSubList(LocalDateTime startDate, LocalDateTime endDate) {
+        return entryList.values()
+                .stream()
+                .filter(p -> p.getDate().isAfter(startDate))
+                .filter(p -> p.getDate().isBefore(endDate))
+                .collect(Collectors.toList());
     }
 }

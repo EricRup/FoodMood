@@ -26,6 +26,7 @@ public class LoginFXMLController extends Controller implements Initializable {
     private PasswordField Password;
 
     public LoginFXMLController() {
+        super();
         curView = "Login";
     }
 
@@ -41,10 +42,6 @@ public class LoginFXMLController extends Controller implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        if (entryList == null) {
-            entryList = new EntryList();
-
-        }
     }
 
     @FXML

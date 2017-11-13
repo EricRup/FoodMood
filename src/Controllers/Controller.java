@@ -13,10 +13,13 @@ import javafx.scene.Scene;
  */
 
 public abstract class Controller implements Initializable {
-    protected static EntryList entryList = new EntryList();
+    protected static EntryList entryList;
     protected static String curView = "";
     
     public Controller(){
+        if (entryList == null){
+            entryList = new EntryList();
+        }
     }
     
     /**

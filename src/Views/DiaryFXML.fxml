@@ -31,18 +31,18 @@
          </children></VBox>
          <VBox fx:id="diaryListBox" layoutX="120.0" layoutY="56.0" prefHeight="394.0" prefWidth="415.0">
              <children>
-                <ListView fx:id="zero" prefHeight="32.5" prefWidth="300.0" />
-                <ListView fx:id="two" prefHeight="32.5" prefWidth="300.0" />
-                <ListView fx:id="four" prefHeight="32.5" prefWidth="300.0" />
-                <ListView fx:id="six" prefHeight="32.5" prefWidth="300.0" />
-                <ListView fx:id="eight" prefHeight="32.5" prefWidth="300.0" />
-                <ListView fx:id="ten" prefHeight="32.5" prefWidth="300.0" />
-                <ListView fx:id="twelve" prefHeight="32.5" prefWidth="300.0" />
-                <ListView fx:id="fourteen" prefHeight="32.5" prefWidth="300.0" />
-                <ListView fx:id="sixteen" prefHeight="32.5" prefWidth="300.0" />
-                <ListView fx:id="eighteen" prefHeight="32.5" prefWidth="300.0" />
-                <ListView fx:id="twenty" prefHeight="32.5" prefWidth="300.0" />
-                <ListView fx:id="twentyTwo" prefHeight="32.5" prefWidth="300.0" />
+                <ListView id="0" fx:id="zero" prefHeight="32.5" prefWidth="300.0" />
+                <ListView id="1" fx:id="two" prefHeight="32.5" prefWidth="300.0" />
+                <ListView id="2" fx:id="four" prefHeight="32.5" prefWidth="300.0" />
+                <ListView id="3" fx:id="six" prefHeight="32.5" prefWidth="300.0" />
+                <ListView id="4" fx:id="eight" prefHeight="32.5" prefWidth="300.0" />
+                <ListView id="5" fx:id="ten" prefHeight="32.5" prefWidth="300.0" />
+                <ListView id="6" fx:id="twelve" prefHeight="32.5" prefWidth="300.0" />
+                <ListView id="7" fx:id="fourteen" prefHeight="32.5" prefWidth="300.0" />
+                <ListView id="8" fx:id="sixteen" prefHeight="32.5" prefWidth="300.0" />
+                <ListView id="9" fx:id="eighteen" prefHeight="32.5" prefWidth="300.0" />
+                <ListView id="10" fx:id="twenty" prefHeight="32.5" prefWidth="300.0" />
+                <ListView id="11" fx:id="twentyTwo" prefHeight="32.5" prefWidth="300.0" />
              </children>    
          </VBox>
     </children>
