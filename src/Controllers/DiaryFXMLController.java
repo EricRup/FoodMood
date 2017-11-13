@@ -79,45 +79,7 @@ public class DiaryFXMLController extends Controller {
                 foodBox.getChildren().add(foods);
                 Button addButton = new Button("Add");
                 addButton.setOnAction((ActionEvent event2) -> {
-                    LocalDateTime tempDate = currentDay.atStartOfDay();
-                    switch(temp.get(0).getId()){
-                        case "zero":
-                            tempDate = tempDate.plusHours(0);
-                            break;
-                        case "two": 
-                            tempDate = tempDate.plusHours(2);
-                            break;
-                        case "four": 
-                            tempDate = tempDate.plusHours(4);
-                            break;
-                        case "six": 
-                            tempDate = tempDate.plusHours(6);
-                            break;
-                        case "eight": 
-                            tempDate = tempDate.plusHours(8);
-                            break;
-                        case "ten": 
-                            tempDate = tempDate.plusHours(10);
-                            break;
-                        case "twelve": 
-                            tempDate = tempDate.plusHours(12);
-                            break;
-                        case "fourteen": 
-                            tempDate = tempDate.plusHours(14);
-                            break;
-                        case "sixteen": 
-                            tempDate = tempDate.plusHours(16);
-                            break;
-                        case "eighteen": 
-                            tempDate = tempDate.plusHours(18);
-                            break;
-                        case "twenty": 
-                            tempDate = tempDate.plusHours(20);
-                            break;
-                        case "twentyTwo":
-                            tempDate = tempDate.plusHours(22);
-                            break;
-                    }
+                    LocalDateTime tempDate = currentDay.atStartOfDay().plusHours(Integer.parseInt(temp.get(0).getId())*2);
                     Meal meal = new Meal(tempDate, ((TextField)foodBox.getChildren().get(1)).getText());
                     meal.addFood((Food)foods.valueProperty().getValue());
                     this.addEntry(meal);
