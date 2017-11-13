@@ -62,8 +62,8 @@ public class DiaryFXMLController extends Controller {
             popup.initModality(Modality.APPLICATION_MODAL);
             popup.initOwner(FoodMood.FoodMood.primaryStage);
             VBox addBox = new VBox(20);
-            Button foodButton = new Button("Food");
-            //Button moodButton = new Button("Mood");
+            Button foodButton = new Button("Meal");
+            Button moodButton = new Button("Mood");
             foodButton.setOnAction((ActionEvent event1) -> {
                 VBox foodBox = new VBox(20);
                 foodBox.getChildren().add(new Label("Meal Name"));
@@ -79,45 +79,7 @@ public class DiaryFXMLController extends Controller {
                 foodBox.getChildren().add(foods);
                 Button addButton = new Button("Add");
                 addButton.setOnAction((ActionEvent event2) -> {
-                    LocalDateTime tempDate = currentDay.atStartOfDay();
-                    switch(temp.get(0).getId()){
-                        case "zero":
-                            tempDate = tempDate.plusHours(0);
-                            break;
-                        case "two": 
-                            tempDate = tempDate.plusHours(2);
-                            break;
-                        case "four": 
-                            tempDate = tempDate.plusHours(4);
-                            break;
-                        case "six": 
-                            tempDate = tempDate.plusHours(6);
-                            break;
-                        case "eight": 
-                            tempDate = tempDate.plusHours(8);
-                            break;
-                        case "ten": 
-                            tempDate = tempDate.plusHours(10);
-                            break;
-                        case "twelve": 
-                            tempDate = tempDate.plusHours(12);
-                            break;
-                        case "fourteen": 
-                            tempDate = tempDate.plusHours(14);
-                            break;
-                        case "sixteen": 
-                            tempDate = tempDate.plusHours(16);
-                            break;
-                        case "eighteen": 
-                            tempDate = tempDate.plusHours(18);
-                            break;
-                        case "twenty": 
-                            tempDate = tempDate.plusHours(20);
-                            break;
-                        case "twentyTwo":
-                            tempDate = tempDate.plusHours(22);
-                            break;
-                    }
+                    LocalDateTime tempDate = currentDay.atStartOfDay().plusHours(Integer.parseInt(temp.get(0).getId())*2);
                     Meal meal = new Meal(tempDate, ((TextField)foodBox.getChildren().get(1)).getText());
                     meal.addFood((Food)foods.valueProperty().getValue());
                     this.addEntry(meal);
@@ -142,8 +104,9 @@ public class DiaryFXMLController extends Controller {
 
     @FXML
     protected void deleteOnClick(ActionEvent event) {
-        int selectedItem = diaryListView.getSelectionModel().getSelectedIndex();
-        obsEntryList.remove(selectedItem);
+        //int selectedItem = diaryListView.getSelectionModel().getSelectedIndex();
+        //obsEntryList.remove(selectedItem);
+     
     }
 
     /**
