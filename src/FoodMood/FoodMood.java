@@ -38,6 +38,11 @@ public class FoodMood extends Application{
         FoodMood.primaryStage.setTitle("FoodMood - Login");
         FoodMood.primaryStage.setScene(new Scene(root));
         FoodMood.primaryStage.show();
+        
+        //Scene 2 - Menu
+        
+        //Scene 3 - Diary
+        
     }
     
 }

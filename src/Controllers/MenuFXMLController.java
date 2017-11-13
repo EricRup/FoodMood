@@ -1,5 +1,6 @@
 package Controllers;
 
+import Models.EntryList;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -41,7 +42,4 @@ public class MenuFXMLController extends Controller implements Initializable{
     protected void handleAnalysisButtonAction(ActionEvent event) {
         view("Analysis");
     }
-
 }
-
-
