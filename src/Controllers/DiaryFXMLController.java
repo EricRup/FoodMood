@@ -142,6 +142,7 @@ public class DiaryFXMLController extends Controller {
     protected void deleteOnClick(ActionEvent event) {
         int selectedItem = diaryListView.getSelectionModel().getSelectedIndex();
         obsEntryList.remove(selectedItem);
+        
     }
 
     /**
