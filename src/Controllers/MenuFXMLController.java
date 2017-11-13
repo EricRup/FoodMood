@@ -12,14 +12,13 @@ import javafx.fxml.Initializable;
  * @author Eric, David
  */
 public class MenuFXMLController extends Controller implements Initializable{
-    private DiaryFXMLController dControl;
-    private AnalysisFXMLController aControl;
 
     /**
      * Initialize MenuController A centralized controller responsible for
      * general delegation between modules
      */
     public MenuFXMLController() {
+        super();
         curView = "Menu";
     }
 
@@ -32,9 +31,6 @@ public class MenuFXMLController extends Controller implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        if (entryList == null) {
-            entryList = new EntryList();
-        }
     }
   
     @FXML
@@ -45,11 +41,5 @@ public class MenuFXMLController extends Controller implements Initializable{
     @FXML
     protected void handleAnalysisButtonAction(ActionEvent event) {
         view("Analysis");
-    }
-    @FXML protected void handleViewDiary(ActionEvent event) {
-        dControl = (DiaryFXMLController) view("Diary");
-    }
-    @FXML protected void handleViewAnalysis(ActionEvent event) {
-        aControl = (AnalysisFXMLController) view("Analysis");
     }
 }
