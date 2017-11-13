@@ -1,37 +1,24 @@
 package Models;
 
+import java.time.LocalDateTime;
+
 /**
  *
  * @author David Huynh
  */
-public class Mood {
 
-    private String name;
+public class Mood extends Entry{
 
     /**
      * Constructor that initializes attributes
-     *
+     * @param date is the date and time of the entry
      * @param name is the name of the food item as a String
      */
-    public Mood(String name) {
-        this.name = name;
+    public Mood(LocalDateTime date, String name) {
+        super(date, name);
     }
-
-    /**
-     * @return the name
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * @param name the name to set
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String toString() {
-        return this.getName();
+    
+    public String toString(){
+        return getName();
     }
 }

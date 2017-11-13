@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -193,6 +194,9 @@ public class DiaryFXMLController extends Controller {
         datePicker.setValue(LocalDate.now());
         currentDay = datePicker.getValue();
         filterDailyList(LocalDate.now().atStartOfDay());
+        diaryListBox.getChildren().forEach((list) -> {
+            list.setOnMouseClicked(new TimeClickHandler((ListView) list));
+        });
     }
     
     
