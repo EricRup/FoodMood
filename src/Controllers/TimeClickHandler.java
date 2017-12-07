@@ -10,10 +10,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import static Controllers.Controller.entryList;
 import javafx.scene.control.Button;
 import javafx.stage.WindowEvent;
 
@@ -30,24 +28,21 @@ public class TimeClickHandler implements EventHandler<MouseEvent> {
     }
 
     public void handle(MouseEvent e) {
-        final Stage popup = new Stage();
-        popup.initModality(Modality.APPLICATION_MODAL);
-        popup.initOwner(FoodMood.FoodMood.primaryStage);
-        VBox EntryViews = new VBox();
-        Button edit = new Button("Edit");
-        Button delete = new Button("Delete");
-        EntryViews.getChildren().add(edit);
-        EntryViews.getChildren().add(delete);
-        EntryViews.getChildren().add(listView);
-        Scene entryPopup = new Scene(EntryViews, 300, 300);
-        popup.setScene(entryPopup);
-        popup.setOnHiding(new EventHandler<WindowEvent>() {
-
-         @Override
-         public void handle(WindowEvent event) {
-        //TODO refresh DiaryFXML on close, using date from this ListView or its Parent
-         }
-        });
-        popup.show();
+        if (((int)listView.getUserData()) != 0){
+            final Stage popup = new Stage();
+            popup.initModality(Modality.APPLICATION_MODAL);
+            popup.initOwner(FoodMood.FoodMood.primaryStage);
+            VBox EntryViews = new VBox();
+            Button edit = new Button("Edit");
+            Button delete = new Button("Delete");
+            EntryViews.getChildren().add(edit);
+            EntryViews.getChildren().add(delete);
+            Scene entryPopup = new Scene(EntryViews, 300, 300);
+            popup.setScene(entryPopup);
+            popup.setOnHiding((WindowEvent event) -> {
+                //TODO refresh DiaryFXML on close, using date from this ListView or its Parent
+            });
+            popup.show();
+        }
     }
 }

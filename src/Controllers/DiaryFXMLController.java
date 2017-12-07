@@ -62,10 +62,9 @@ public class DiaryFXMLController extends Controller {
 
     @FXML
     protected void addOnClick(ActionEvent event) {
-        System.out.println("Working");
-        List<Node> temp = diaryListBox.getChildren().filtered(p -> p.isFocused());
+        List<Node> focusedListViews = diaryListBox.getChildren().filtered(p -> p.isFocused());
 
-        if (temp.size() > 0) {
+        if (focusedListViews.size() > 0) {
             final Stage popup = new Stage();
             popup.initModality(Modality.APPLICATION_MODAL);
             popup.initOwner(FoodMood.FoodMood.primaryStage);
@@ -91,7 +90,7 @@ public class DiaryFXMLController extends Controller {
                 foodBox.getChildren().add(foods);
                 Button addButton = new Button("Add");
                 addButton.setOnAction((ActionEvent event2) -> {
-                    LocalDateTime tempDate = currentDay.atStartOfDay().plusHours(Integer.parseInt(temp.get(0).getId()) * 2);
+                    LocalDateTime tempDate = currentDay.atStartOfDay().plusHours(Integer.parseInt(focusedListViews.get(0).getId()) * 2);
                     Meal meal = new Meal(tempDate, ((TextField) foodBox.getChildren().get(1)).getText());
                     meal.addFood((Food) foods.valueProperty().getValue());
                     this.addEntry(meal);
@@ -112,10 +111,24 @@ public class DiaryFXMLController extends Controller {
                 moodBox.setAlignment(Pos.BASELINE_CENTER);
                 moodBox.getChildren().add(new Label("Mood Type"));
                 ComboBox moods = new ComboBox();
-                ArrayList<Mood> moodList = new ArrayList(5);
-                
+                ArrayList<String> moodList = new ArrayList(5);
+                moodList.add("Happy");
+                moodList.add("Nervous");
+                moodList.add("Sad");
+                moodList.add("Angry");
+                moodList.add("Relaxed");
                 moods.setItems(FXCollections.observableList(moodList));
                 moodBox.getChildren().add(moods);
+                moodBox.getChildren().add(new Label("Mood Strength"));
+                ComboBox strength = new ComboBox();
+                ArrayList<String> strengthLevels = new ArrayList(5);
+                strengthLevels.add("1");
+                strengthLevels.add("2");
+                strengthLevels.add("3");
+                strengthLevels.add("4");
+                strengthLevels.add("5");
+                strength.setItems(FXCollections.observableList(strengthLevels));
+                moodBox.getChildren().add(strength);
                 Button addButton = new Button("Add");
                 moodBox.getChildren().add(addButton);
                 Scene foodPopup = new Scene(moodBox, 300, 300);
@@ -180,7 +193,7 @@ public class DiaryFXMLController extends Controller {
             int offset = Integer.parseInt(cur.getId());
             ObservableList obsEntries = FXCollections.observableList(getSubList(date.plusHours(offset * 2).minusNanos(1), date.plusHours((offset + 1) * 2)));
             cur.setItems(obsEntries);
-
+            cur.setUserData(obsEntries.size());
         });
     }
 
