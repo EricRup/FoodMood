@@ -94,5 +94,4 @@ public class EntryList extends TreeMap<LocalDateTime, Entry> {
               new FileOutputStream(f), "utf-8"));
         writer.write(sb.toString());
     }
-
 }

@@ -46,7 +46,7 @@ public class LoginFXMLController extends Controller implements Initializable {
 
     @FXML
     protected void handleSubmitButtonAction(ActionEvent event) {
-        view("Menu");
+        FoodMood.FoodMood.mControl = (MenuFXMLController) view("Menu");
     }
     
 
