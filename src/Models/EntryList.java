@@ -1,7 +1,11 @@
 package Models;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 import java.time.LocalDateTime;
 import java.util.Map;
 import java.util.TreeMap;
@@ -86,7 +90,9 @@ public class EntryList extends TreeMap<LocalDateTime, Entry> {
                 }
             }
         }
-        
+        Writer writer = new BufferedWriter(new OutputStreamWriter(
+              new FileOutputStream(f), "utf-8"));
+        writer.write(sb.toString());
     }
 
 }
