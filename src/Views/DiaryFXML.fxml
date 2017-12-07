@@ -7,13 +7,11 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<Pane fx:id="calendarPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.DiaryFXMLController">
+<Pane fx:id="diaryPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.DiaryFXMLController">
    <children>
       <DatePicker fx:id="datePicker" layoutX="85.0" layoutY="14.0" onAction="#updateDate" />
       <Label layoutX="40.0" layoutY="18.0" text="Date" />
-      <Button fx:id="addButton" focusTraversable="false" layoutX="415.0" layoutY="14.0" mnemonicParsing="false" onAction="#addOnClick" text="Add" />
-      <Button fx:id="editButton" disable="true" layoutX="460.0" layoutY="14.0" mnemonicParsing="false" onAction="#editOnClick" text="Edit" />
-      <Button fx:id="deleteButton" disable="false" layoutX="502.0" layoutY="14.0" mnemonicParsing="false" onAction="#deleteOnClick" text="Delete" />
+      <Button fx:id="addButton" focusTraversable="false" layoutX="497.0" layoutY="14.0" mnemonicParsing="false" onAction="#addOnClick" text="Add" />
       <VBox fx:id="timeBox" layoutX="2.0" layoutY="56.0" prefHeight="394.0" prefWidth="110.0">
          <children>
             <Label alignment="CENTER" prefHeight="32.5" prefWidth="153.0" text="00:00" />

@@ -5,7 +5,7 @@
  */
 package Controllers;
 
-
+import FoodMood.FoodMood;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
@@ -22,37 +22,42 @@ public class AnalysisFXMLController extends Controller implements Initializable 
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-    }    
-  
+    }
+
     /**
      * analyzes the effects of quantity and quality of food eaten
+     *
      * @return if the analysis was successful
      */
-    public String nutritionAnalysis(){
-        if (entryList.isEmpty()){
+    public String nutritionAnalysis() {
+        if (FoodMood.entryList.isEmpty()) {
             return null;
         }
         return "Nutrion Analyzed";
     }
+
     /**
      * analyzes the effects of eating a different number of times a day
+     *
      * @return if the analysis was successful
      */
-    public String frequencyAnalysis(){
-        if (entryList.isEmpty()){
+    public String frequencyAnalysis() {
+        if (FoodMood.entryList.isEmpty()) {
             return null;
         }
         return "Eating Frequency Analyzed";
     }
+
     /**
      * analyzes the effects of eating at different times of day
+     *
      * @return if the analysis was successful
      */
-    public String timeAnalysis(){
-        if (entryList.isEmpty()){
+    public String timeAnalysis() {
+        if (FoodMood.entryList.isEmpty()) {
             return null;
         }
         return "Time of Eating Analyzed";
     }
-    
+
 }
