@@ -6,7 +6,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -18,6 +24,7 @@ public class EntryList extends TreeMap<LocalDateTime, Entry> {
 
     private final String SEPARATOR = "\t";
     private final String END = "\n";
+    private final File f = new File("persistEntries.txt");
 
     /**
      * Add method to use date/time as key for entries. In case of collision, add
@@ -41,18 +48,18 @@ public class EntryList extends TreeMap<LocalDateTime, Entry> {
     }
 
     public void save() throws IOException {
-        File f = new File("persistEntries.txt");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         StringBuilder sb = new StringBuilder();
-        
+
         if (!f.isFile()) {
             f.createNewFile();
         }
-        
+
         for (Map.Entry<LocalDateTime, Entry> entry
                 : this.entrySet()) {
-            LocalDateTime key = entry.getKey();
+            String key = entry.getKey().format(formatter);
             Entry diaryEntry = entry.getValue();
-            
+
             sb.append(key)
                     .append(SEPARATOR)
                     .append(diaryEntry.getType())
@@ -62,8 +69,7 @@ public class EntryList extends TreeMap<LocalDateTime, Entry> {
 
             if (diaryEntry instanceof Mood) {
                 Mood de = (Mood) diaryEntry;
-                sb.append(diaryEntry.getName())
-                        .append(SEPARATOR)
+                sb.append(SEPARATOR)
                         .append(de.getStrength())
                         .append(END);
             }
@@ -71,7 +77,8 @@ public class EntryList extends TreeMap<LocalDateTime, Entry> {
                 Meal de = (Meal) diaryEntry;
 
                 for (Food food : de.getFoods()) {
-                    sb.append(food.isDrink())
+                    sb.append(food.getName())
+                            .append(food.isDrink())
                             .append(SEPARATOR)
                             .append(food.getCalories())
                             .append(SEPARATOR)
@@ -86,13 +93,77 @@ public class EntryList extends TreeMap<LocalDateTime, Entry> {
                             .append(food.getSugars())
                             .append(SEPARATOR)
                             .append(food.getFiber())
+                            .append(SEPARATOR)
+                            .append(food.getProtein())
                             .append(END);
                 }
             }
         }
         Writer writer = new BufferedWriter(new OutputStreamWriter(
-              new FileOutputStream(f), "utf-8"));
+                new FileOutputStream(f), "utf-8"));
         writer.write(sb.toString());
+        writer.close();
     }
 
+    private void load() throws IOException {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+
+        if (!f.isFile()) {
+            f.createNewFile();
+        }
+
+        List<String> lines = Files.readAllLines(Paths.get("persistEntries.txt"), StandardCharsets.UTF_8);
+
+        for (String line : lines) {
+            String[] entryDetails = line.split("\\t");
+            LocalDateTime key = LocalDateTime.parse(entryDetails[0], formatter);
+            String name = entryDetails[2];
+
+            if (entryDetails[1].equals("Mood")) {
+                int strength = Integer.parseInt(entryDetails[3]);
+                Mood mood = new Mood(key, name, strength);
+                this.add(mood);
+            } else if (entryDetails[1].equals("Meal")) {
+                int i = 3;
+                Meal meal = new Meal(key, name);
+                
+                while(i < entryDetails.length) {
+                    String foodName = entryDetails[i];
+                    i++;
+                    boolean drink = Boolean.parseBoolean(entryDetails[i]);
+                    i++;
+                    int cal = Integer.parseInt(entryDetails[i]);
+                    i++;
+                    int carbs = Integer.parseInt(entryDetails[i]);
+                    i++;
+                    int satFat = Integer.parseInt(entryDetails[i]);
+                    i++;
+                    int monoFat = Integer.parseInt(entryDetails[i]);
+                    i++;
+                    int polyFat = Integer.parseInt(entryDetails[i]);
+                    i++;
+                    int sugars = Integer.parseInt(entryDetails[i]);
+                    i++;
+                    int fibers = Integer.parseInt(entryDetails[i]);
+                    i++;
+                    int protein = Integer.parseInt(entryDetails[i]);
+                    i++;
+                    Food food = new Food(foodName);
+                    food.setCalories(cal);
+                    food.setDrink(drink);
+                    food.setCarbs(carbs);
+                    food.setSatFat(satFat);
+                    food.setFiber(fibers);
+                    food.setProtein(protein);
+                    food.setSugars(sugars);
+                    food.setPolyFat(polyFat);
+                    food.setMonoFat(monoFat);
+                    meal.addFood(food);
+                }
+                this.add(meal);
+            }
+
+        }
+
+    }
 }
