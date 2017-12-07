@@ -17,7 +17,6 @@ public class Mood extends Entry{
      */
   
     private final String type = "Mood";
-    private int strength;
   
     public Mood(LocalDateTime date, String name, int strength) {
         super(date, name);
