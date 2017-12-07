@@ -15,6 +15,10 @@ public class Mood extends Entry{
      * @param name is the name of the food item as a String
      * @param strength is the indicated strength of this mood
      */
+  
+    private final String type = "Mood";
+    private int strength;
+  
     public Mood(LocalDateTime date, String name, int strength) {
         super(date, name);
         this.strength = strength;

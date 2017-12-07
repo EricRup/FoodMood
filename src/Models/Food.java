@@ -6,16 +6,20 @@ package Models;
  */
 
 public class Food{
+
     
-    private int sugars;
-    private int monoFat;
-    private int polyFat;
-    private int carbs;
-    private int calories;
-    private int transFat;
-    private boolean drink;
-    private int satFat;
+    private int protein = 0;
+    private int sugars = 0;
+    private int monoFat = 0;
+    private int polyFat = 0;
+    private int carbs = 0;
+    private int calories = 0;
+    private int transFat = 0;
+    private int fiber = 0;
+    private boolean drink = false;
+    private int satFat = 0;
     private String name;
+    
     /**
      * Constructor that initializes attributes
      * @param date is the date and time of the entry
@@ -47,6 +51,36 @@ public class Food{
         this.drink = drink;
     }
 
+    /**
+     * @return the fiber
+     */
+    public int getFiber() {
+        return fiber;
+    }
+
+    /**
+     * @param fiber the fiber to set
+     */
+    public void setFiber(int fiber) {
+        this.fiber = fiber;
+    }
+    
+    
+    
+    /**
+     * @return the protein
+     */
+    public int getProtein() {
+        return protein;
+    }
+
+    /**
+     * @param protein the protein to set
+     */
+    public void setProtein(int protein) {
+        this.protein = protein;
+    }
+    
     /**
      * @return the satFat, an integer representing saturated fats in grams
      */

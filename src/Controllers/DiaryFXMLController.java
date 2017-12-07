@@ -208,7 +208,6 @@ public class DiaryFXMLController extends Controller {
         addEntry(new Mood(cal, "Sad", 5));
         addEntry(new Mood(cal.plusHours(4), "Happy", 3));
         addEntry(new Mood(cal.plusHours(8), "Angry", 2));
-
     }
 
     @FXML

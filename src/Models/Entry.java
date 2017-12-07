@@ -7,8 +7,16 @@ import java.time.LocalDateTime;
  * @author Eric
  */
 public abstract class Entry {
+
+    /**
+     * @return the type
+     */
+    public String getType() {
+        return type;
+    }
     private LocalDateTime date;
     private String name;
+    private String type;
     
     /**
      * Constructor that initializes attributes
