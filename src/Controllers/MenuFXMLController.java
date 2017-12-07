@@ -11,7 +11,7 @@ import javafx.fxml.Initializable;
  * @author Eric, David
  */
 public class MenuFXMLController extends Controller implements Initializable{
-
+    public DiaryFXMLController dControl;
     /**
      * Initialize MenuController A centralized controller responsible for
      * general delegation between modules
@@ -34,7 +34,7 @@ public class MenuFXMLController extends Controller implements Initializable{
   
     @FXML
     protected void handleDiaryButtonAction(ActionEvent event) {
-        view("Diary");
+        dControl = (DiaryFXMLController) view("Diary");
     }
 
     @FXML

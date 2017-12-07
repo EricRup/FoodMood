@@ -13,19 +13,15 @@ import javafx.stage.Stage;
  *
  * @author David Huynh
  */
-public class FoodMood extends Application{
-    public static EntryList entryList;
+public class FoodMood extends Application {
+
+    public static EntryList entryList = new EntryList();
     public static LoginFXMLController lControl;
     public static MenuFXMLController mControl;
     public static Stage primaryStage;
-    
-    public static void main(String[] args) {
-        entryList = new EntryList();
-        launch();
-    }
 
-    public static EntryList getEntryList() {
-        return entryList;
+    public static void main(String[] args) {
+        launch();
     }
 
     @Override
@@ -39,5 +35,5 @@ public class FoodMood extends Application{
         FoodMood.primaryStage.setScene(new Scene(root));
         FoodMood.primaryStage.show();
     }
-    
+
 }
