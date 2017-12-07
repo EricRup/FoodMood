@@ -1,19 +1,14 @@
 package Models;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
  *
  * @author Eric
  */
-public abstract class Entry {
+public abstract class Entry implements Serializable{
 
-    /**
-     * @return the type
-     */
-    public String getType() {
-        return type;
-    }
     private LocalDateTime date;
     private String name;
     private String type;
@@ -59,5 +54,19 @@ public abstract class Entry {
     @Override
     public String toString(){
         return "date:"+date.toString();
+    }
+
+    /**
+     * @return the type
+     */
+    public String getType() {
+        return type;
+    }
+
+    /**
+     * @param type the type to set
+     */
+    public void setType(String type) {
+        this.type = type;
     }
 }

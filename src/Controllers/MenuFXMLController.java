@@ -42,6 +42,7 @@ public class MenuFXMLController extends Controller implements Initializable{
         view("Analysis");
     }
 
+    
 }
 
 

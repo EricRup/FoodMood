@@ -1,10 +1,6 @@
 package Controllers;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-import javafx.application.Platform;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -26,7 +22,6 @@ public abstract class Controller implements Initializable {
      *
      * @param targetStage the stage to change the view to. Proper noun format
      * i.e. Diary or Analysis
-     * @param parentStage the stage to return to on window close
      * @return the controller for the requested stage (as a generic Controller)
      */
     public Controller view(String targetStage) {
@@ -38,7 +33,6 @@ public abstract class Controller implements Initializable {
             curView = targetStage;
             return loader.getController();
         } catch (IOException e) {
-            System.err.println("Error: Class name [" + targetStage + "] doesn't exist in MenuLoader");
             e.printStackTrace();
         }
         return null;

@@ -1,11 +1,13 @@
 package Models;
 
+import java.io.Serializable;
+
 /**
  *
  * @author David Huynh
  */
 
-public class Food{
+public class Food implements Serializable{
 
     
     private int protein = 0;

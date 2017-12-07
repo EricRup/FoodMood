@@ -16,16 +16,15 @@ public class Mood extends Entry{
      * @param strength is the indicated strength of this mood
      */
   
-    private final String type = "Mood";
   
     public Mood(LocalDateTime date, String name, int strength) {
         super(date, name);
         this.strength = strength;
+        setType("Mood");
     }
     
     public Mood(String name, int strength){
-        super(LocalDateTime.now(), name);
-        this.strength = strength;
+        this(LocalDateTime.now(), name, strength);
     }
     @Override
     public String toString(){
