@@ -8,7 +8,6 @@ import java.time.LocalDateTime;
  */
 
 public class Mood extends Entry{
-    private int strength;
     /**
      * Constructor that initializes attributes
      * @param date is the date and time of the entry
@@ -16,17 +15,18 @@ public class Mood extends Entry{
      * @param strength is the indicated strength of this mood
      */
   
-    private final String type = "Mood";
     private int strength;
   
     public Mood(LocalDateTime date, String name, int strength) {
         super(date, name);
         this.strength = strength;
+        setType("Mood");
     }
     
     public Mood(String name, int strength){
         super(LocalDateTime.now(), name);
         this.strength = strength;
+        setType("Mood");
     }
     @Override
     public String toString(){

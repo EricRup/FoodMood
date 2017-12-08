@@ -32,6 +32,9 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import FoodMood.FoodMood;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.scene.layout.Pane;
 
 /**
@@ -245,10 +248,13 @@ public class DiaryFXMLController extends Controller {
         Button previous = new Button("<--");
         previous.setOnAction(e -> {
             view("Menu");
+            try {
+                FoodMood.entryList.save();
+            } catch (IOException ex) {
+                Logger.getLogger(DiaryFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         });
         diaryPane.getChildren().add(0, previous);
-        if (FoodMood.entryList.isEmpty())
-            testData();
         dayCellSetup();
         datePicker.setValue(LocalDate.now());
         currentDay = datePicker.getValue();

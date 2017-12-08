@@ -15,19 +15,12 @@ import java.util.Optional;
  * @author Walrus
  */
 public class Meal extends Entry{
-
-    /**
-     * @return the type
-     */
-    public String getType() {
-        return type;
-    }
     
     ArrayList<Food> foodConsumed = new ArrayList<>();
-    private final String type = "Meal";
     
     public Meal(LocalDateTime date, String name) {
         super(date, name);
+        setType("Meal");
     }
     public Meal addFood(String iName){
         foodConsumed.add(new Food(iName));

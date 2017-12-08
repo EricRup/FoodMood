@@ -3,6 +3,7 @@ package FoodMood;
 import Controllers.LoginFXMLController;
 import Controllers.MenuFXMLController;
 import Models.EntryList;
+import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -15,12 +16,13 @@ import javafx.stage.Stage;
  */
 public class FoodMood extends Application {
 
-    public static EntryList entryList = new EntryList();
+    public static EntryList entryList;
     public static LoginFXMLController lControl;
     public static MenuFXMLController mControl;
     public static Stage primaryStage;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        entryList = new EntryList();
         launch();
     }
 
