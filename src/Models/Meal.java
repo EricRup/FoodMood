@@ -84,7 +84,7 @@ public class Meal extends Entry{
         totals.put("protein", totalProtein);
         totals.put("carbs", totalCarbs);
         
-        return totals
+        return totals;
     }
     
     public String getType() {
