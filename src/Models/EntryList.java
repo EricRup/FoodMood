@@ -26,6 +26,9 @@ public class EntryList extends TreeMap<LocalDateTime, Entry> {
     private final String END = "\n";
     private final File f = new File("persistEntries.txt");
 
+    public EntryList() throws IOException{
+        load();
+    }
     /**
      * Add method to use date/time as key for entries. In case of collision, add
      * 1 millisecond until it no longer collides Should never collide in real
@@ -69,8 +72,7 @@ public class EntryList extends TreeMap<LocalDateTime, Entry> {
 
             if (diaryEntry instanceof Mood) {
                 Mood de = (Mood) diaryEntry;
-                sb.append(SEPARATOR)
-                        .append(de.getStrength())
+                sb.append(de.getStrength())
                         .append(END);
             }
             if (diaryEntry instanceof Meal) {
@@ -103,7 +105,9 @@ public class EntryList extends TreeMap<LocalDateTime, Entry> {
                 new FileOutputStream(f), "utf-8"));
         writer.write(sb.toString());
         writer.close();
+        writer.flush();
     }
+    
 
     private void load() throws IOException {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");

@@ -9,6 +9,13 @@ import java.time.LocalDateTime;
 public abstract class Entry {
 
     /**
+     * @param type the type to set
+     */
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    /**
      * @return the type
      */
     public String getType() {

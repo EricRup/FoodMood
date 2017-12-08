@@ -4,14 +4,16 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Eric/Documents/GitHub/FoodMood/src/FoodMood/FoodMood.java</file>
+            <file>file:/C:/Users/Eric/Documents/GitHub/FoodMood/src/readme.txt</file>
+            <file>file:/C:/Users/Eric/Documents/GitHub/FoodMood/src/Models/Entry.java</file>
+            <file>file:/C:/Users/Eric/Documents/GitHub/FoodMood/src/Controllers/LoginFXMLController.java</file>
+            <file>file:/C:/Users/Eric/Documents/GitHub/FoodMood/src/Controllers/TimeClickHandler.java</file>
             <file>file:/C:/Users/Eric/Documents/GitHub/FoodMood/src/Models/EntryList.java</file>
             <file>file:/C:/Users/Eric/Documents/GitHub/FoodMood/src/Controllers/MenuFXMLController.java</file>
-            <file>file:/C:/Users/Eric/Documents/GitHub/FoodMood/src/Controllers/DiaryFXMLController.java</file>
             <file>file:/C:/Users/Eric/Documents/GitHub/FoodMood/src/Models/Food.java</file>
-            <file>file:/C:/Users/Eric/Documents/GitHub/FoodMood/src/Models/Entry.java</file>
+            <file>file:/C:/Users/Eric/Documents/GitHub/FoodMood/src/Controllers/DiaryFXMLController.java</file>
+            <file>file:/C:/Users/Eric/Documents/GitHub/FoodMood/src/Controllers/Controller.java</file>
             <file>file:/C:/Users/Eric/Documents/GitHub/FoodMood/src/Models/Meal.java</file>
-            <file>file:/C:/Users/Eric/Documents/GitHub/FoodMood/src/Controllers/LoginFXMLController.java</file>
-            <file>file:/C:/Users/Eric/Documents/GitHub/FoodMood/src/Views/DiaryFXML.fxml</file>
             <file>file:/C:/Users/Eric/Documents/GitHub/FoodMood/src/Models/Mood.java</file>
             <file>file:/C:/Users/Eric/Documents/GitHub/FoodMood/src/Controllers/AnalysisFXMLController.java</file>
         </group>

@@ -16,14 +16,8 @@ import java.util.HashMap;
  *
  * @author Walrus
  */
-public class Meal extends Entry {
-
-    /*
-     * @return the type
-     */
-    public String getType() {
-        return type;
-    }
+public class Meal extends Entry{
+    
 
     ArrayList<Food> foodConsumed = new ArrayList<>();
     private final String type = "Meal";
@@ -83,17 +77,20 @@ public class Meal extends Entry {
             totalFiber += food.getFiber();
             totalProtein += food.getProtein();
             totalCarbs += food.getCarbs();
-            totalCalories += food.getCalories();
         }
         HashMap< String, Integer> totals = new HashMap<String, Integer>();
         totals.put("sugar", totalSugar);
         totals.put("fiber", totalFiber);
         totals.put("protein", totalProtein);
         totals.put("carbs", totalCarbs);
-        totals.put("calories", totalCalories);
         
         return totals
     }
+    
+    public String getType() {
+        return type;
+    }
+
 
     @Override
     public String toString() {
